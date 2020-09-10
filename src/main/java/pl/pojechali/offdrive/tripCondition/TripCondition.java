@@ -22,6 +22,8 @@ public class TripCondition {
     private String mud;
     private boolean waterCrossing;
     private String weather;
+    private boolean useWinch;
+    private boolean useSandLadder;
 
 
 
