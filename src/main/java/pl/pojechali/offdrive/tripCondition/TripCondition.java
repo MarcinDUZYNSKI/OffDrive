@@ -3,6 +3,7 @@ package pl.pojechali.offdrive.tripCondition;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import pl.pojechali.offdrive.trip.Trip;
 
 import javax.persistence.*;
 
@@ -24,6 +25,8 @@ public class TripCondition {
     private String weather;
     private boolean useWinch;
     private boolean useSandLadder;
+    @OneToOne
+    private Trip trip;
 
 
 

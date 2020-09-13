@@ -4,11 +4,15 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.UniqueElements;
+import pl.pojechali.offdrive.route.Route;
+import pl.pojechali.offdrive.trip.Trip;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = User.TABLE)
@@ -32,6 +36,11 @@ public class User {
     private LocalDate creationDate;
     private String language;
     private LocalDate lastActivityDate;
+    @OneToMany(mappedBy = "user")
+    private List<Trip> trips;
+    @OneToMany(mappedBy = "user")
+    private List<Route> routes;
+
 
 
 }

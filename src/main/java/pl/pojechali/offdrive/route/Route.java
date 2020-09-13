@@ -4,10 +4,13 @@ import io.jenetics.jpx.GPX;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import pl.pojechali.offdrive.trip.Trip;
+import pl.pojechali.offdrive.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = Route.TABLE)
@@ -27,8 +30,12 @@ public class Route {
     private LocalDate publicDate;
 
     //https://github.com/jenetics/jpx    biblioteka do tras
-    private GPX rout;
+//    private GPX rout;
     @NotBlank
     private int routeAltitude;
     private int tripCount;
+    @ManyToOne
+    private User user;
+    @OneToMany(mappedBy = "route")
+    private List<Trip> trips;
 }

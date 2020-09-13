@@ -3,6 +3,7 @@ package pl.pojechali.offdrive.carAttribute;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import pl.pojechali.offdrive.trip.Trip;
 
 import javax.persistence.*;
 
@@ -22,4 +23,7 @@ public class CarAttribute {
     private int lift;
     private boolean hasWinch;
     private boolean hasSandLadder;
+    @OneToOne
+    private Trip trip;
+
 }
