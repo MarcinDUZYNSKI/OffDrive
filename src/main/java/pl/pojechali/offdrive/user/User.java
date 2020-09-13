@@ -7,12 +7,12 @@ import org.hibernate.validator.constraints.UniqueElements;
 import pl.pojechali.offdrive.route.Route;
 import pl.pojechali.offdrive.trip.Trip;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = User.TABLE)
@@ -21,6 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class User {
     public final static String TABLE ="t_user";
+    private final static String ROLETABLE ="t_user_role";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -40,7 +41,8 @@ public class User {
     private List<Trip> trips;
     @OneToMany(mappedBy = "user")
     private List<Route> routes;
-
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = ROLETABLE)
+    private Set<Role> roles;
 
 }
