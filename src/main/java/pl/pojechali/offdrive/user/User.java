@@ -44,5 +44,6 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = ROLETABLE)
     private Set<Role> roles;
+    private int enabled;
 
 }
