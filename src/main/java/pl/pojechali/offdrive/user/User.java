@@ -6,10 +6,12 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.UniqueElements;
 import pl.pojechali.offdrive.route.Route;
 import pl.pojechali.offdrive.trip.Trip;
+import pl.pojechali.offdrive.user.role.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -26,7 +28,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Email
-    @UniqueElements
+//    @UniqueElements
+//    @NotEmpty
     private String email;
     @NotBlank
     private String firstName;

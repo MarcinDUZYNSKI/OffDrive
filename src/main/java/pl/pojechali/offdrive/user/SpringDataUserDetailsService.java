@@ -1,7 +1,6 @@
 package pl.pojechali.offdrive.user;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,11 +14,7 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 public class SpringDataUserDetailsService implements UserDetailsService {
-    private UserService userService;
-//    @Autowired
-//    public void setUserRepository(UserService userService) {
-//        this.userService = userService;
-//    }
+    private final UserSecurityService userService; //tu zmieniłem na klase z interfacy jak było w materiaćłach
 
     @Override
     public UserDetails loadUserByUsername(String email)  {

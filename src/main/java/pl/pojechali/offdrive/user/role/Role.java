@@ -1,11 +1,10 @@
-package pl.pojechali.offdrive.user;
+package pl.pojechali.offdrive.user.role;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Getter
