@@ -2,27 +2,30 @@ package pl.pojechali.offdrive.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
 public class UserController {
     private final UserServiceImpl userService;
 
-    @GetMapping("/create-user")
-    @ResponseBody
-    public String createUser() {
-        User user = new User();
-        user.setEmail("admin@admin.pl");
-        user.setPassword("admin");
-        user.setFirstName("Zbigniew");
-        user.setLastName("Testowy");
-//        user.setCreationDate(LocalDate.now());
+    @RequestMapping(value = {"/admin/createUser"}, method = RequestMethod.GET)
+//    @GetMapping("/admin/createUser")
+    public String createUser(Model model) {
+        model.addAttribute("user", new User());
+        return "admin/createUser";
+    }
+    @PostMapping("/admin/createUser")
+    public String saveUser(@Valid User user, BindingResult result){
+        if (result.hasErrors()){
+            return "admin/createUser";
+        }
         userService.saveUser(user);
-        return "admin";
+        return "admin/login";
     }
 
 //    @GetMapping("/admin")

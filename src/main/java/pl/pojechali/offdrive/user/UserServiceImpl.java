@@ -7,6 +7,7 @@ import pl.pojechali.offdrive.user.role.Role;
 import pl.pojechali.offdrive.user.role.RoleRepository;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -18,7 +19,6 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-
     public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEnabled(1);
+        user.setCreationDate(LocalDateTime.now());
         Role userRole = roleRepository.findByName("ROLE_USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);

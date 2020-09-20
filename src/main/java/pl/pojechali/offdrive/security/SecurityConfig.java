@@ -41,14 +41,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin()
                 .loginPage("/login")//adres url do strony logowania
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/home",true)
+                .defaultSuccessUrl("/index/index",true)
                 .failureUrl("/admin/403")
                 .and().logout().logoutSuccessUrl("/") //akcja przenieśe po wylogowaniu pod wskazany adres
                 .permitAll()
                 .and().exceptionHandling().accessDeniedPage("/403");
 
     }
-
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

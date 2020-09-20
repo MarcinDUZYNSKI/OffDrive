@@ -6,6 +6,8 @@
 </head>
 <body>
 Witamy na stronie startowej<br>
-<spring:message code="homepage.welcome"/>
+<spring:message code="homepage.welcome"/><br>
+<a href="/admin/createUser">Creat User</a><br>,
+<a href="/login">Login</a><br>
 </body>
 </html>

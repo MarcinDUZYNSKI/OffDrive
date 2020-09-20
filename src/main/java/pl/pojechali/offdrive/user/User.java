@@ -3,7 +3,6 @@ package pl.pojechali.offdrive.user;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.UniqueElements;
 import pl.pojechali.offdrive.route.Route;
 import pl.pojechali.offdrive.trip.Trip;
 import pl.pojechali.offdrive.user.role.Role;
@@ -13,6 +12,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -27,19 +27,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Email
-//    @UniqueElements
-//    @NotEmpty
+    @NotBlank(message = "Email canot by blank")
+    @Email(message = "this is't email")
+//    @UniqueElements //to działa na kolekci tu trzeba stworzyć włąsny walidator
     private String email;
-    @NotBlank
+    @NotBlank(message = "Name is mandatory")
     private String firstName;
-    @NotBlank
+    @NotBlank(message = "Name is mandatory")
     private String lastName;
     private String password;
     private String nickName;
-    private LocalDate creationDate;
+    @Column( nullable = false, updatable = false)
+    private LocalDateTime creationDate;
     private String language;
-    private LocalDate lastActivityDate;
+    private LocalDateTime lastActivityDate;
     @OneToMany(mappedBy = "user")
     private List<Trip> trips;
     @OneToMany(mappedBy = "user")

@@ -11,10 +11,10 @@ public class LoginController {
     public String login() {
         return "admin/login"; //lokalizację pliku widoku
     }
-//    @RequestMapping(value = {"/perform_login"}, method = RequestMethod.POST)
-//    public String login2() {
+    @RequestMapping(value = {"/perform_login"}, method = RequestMethod.POST)
+    public String login2() {
 //        System.out.println("nie działa ");
-//        return "admin/login"; //lokalizację pliku widoku
-//    }
+        return "index/index"; //lokalizację pliku widoku
+    }
 
 }

@@ -1,6 +1,6 @@
 package pl.pojechali.offdrive.route;
 
-import io.jenetics.jpx.GPX;
+//import io.jenetics.jpx.GPX;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -28,7 +28,6 @@ public class Route {
     private int length;
     @NotBlank
     private LocalDate publicDate;
-
     //https://github.com/jenetics/jpx    biblioteka do tras
 //    private GPX rout;
     @NotBlank
