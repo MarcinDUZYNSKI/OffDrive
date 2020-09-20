@@ -8,5 +8,5 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional // czy to jest na pewno dobry import
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findUserByEmail(String email);// W encji nie posiadam Username lub name????
+    User findUserByEmail(String email);
 }

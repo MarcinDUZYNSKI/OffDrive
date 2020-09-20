@@ -25,6 +25,7 @@ public class TripCondition {
     private String weather;
     private boolean useWinch;
     private boolean useSandLadder;
+    private int temperature;
     @OneToOne
     private Trip trip;
 
