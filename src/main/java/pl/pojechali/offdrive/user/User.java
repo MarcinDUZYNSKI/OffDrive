@@ -1,5 +1,6 @@
 package pl.pojechali.offdrive.user;
 
+import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -27,17 +28,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotBlank(message = "Email canot by blank")
-    @Email(message = "this is't email")
+    @NotBlank(message = "Please provide an email")
+    @Email(message = "Please provide a valid Email")
+    @Column(unique = true)
 //    @UniqueElements //to działa na kolekci tu trzeba stworzyć włąsny walidator
     private String email;
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "Please provide first name")
     private String firstName;
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "Please provide last name")
     private String lastName;
+    @NotBlank(message = "Please provide password")
+    @Size(min = 8, max = 100)
     private String password;
     private String nickName;
-    @Column( nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime creationDate;
     private String language;
     private LocalDateTime lastActivityDate;
