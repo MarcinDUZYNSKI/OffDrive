@@ -44,7 +44,12 @@ class TripServiceTest {
 
     //usuń trip
 
+    //wyszukaj tripy usera
+
 }
+
+
+
 
 
 // testujemy poprawność założeń do zapisu usera np uniq czy notBlank

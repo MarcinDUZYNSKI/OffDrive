@@ -12,6 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = Trip.TABLE)
@@ -26,7 +27,7 @@ public class Trip {
     @NotBlank
     private String name;
     @NotBlank
-    private LocalDate tripDate;
+    private LocalDateTime tripDate;
     @NotBlank
     private Time tripTime;
     @NotBlank
