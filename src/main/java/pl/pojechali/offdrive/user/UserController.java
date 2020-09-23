@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import pl.pojechali.offdrive.security.UserAlreadyExistException;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,8 +25,14 @@ public class UserController {
         if (result.hasErrors()){
             return "admin/createUser";
         }
-        userService.saveUser(user);
-        return "admin/login";
+        try {
+            userService.saveUser(user);
+        } catch (UserAlreadyExistException e) {
+            result.rejectValue("email", "user.email","An account already exists for this email.");
+            return "admin/createUser";
+        }
+            return "admin/login";
+
     }
 
 //    @GetMapping("/admin")
