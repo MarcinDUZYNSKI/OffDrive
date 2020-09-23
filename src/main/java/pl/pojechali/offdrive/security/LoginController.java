@@ -14,7 +14,7 @@ public class LoginController {
     @RequestMapping(value = {"/perform_login"}, method = RequestMethod.POST)
     public String login2() {
 //        System.out.println("nie działa ");
-        return "index/index"; //lokalizację pliku widoku
+        return "index/trip"; //lokalizację pliku widoku
     }
 
 }
