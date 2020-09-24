@@ -20,12 +20,6 @@
 </head>
 <body class="homepage">
 
-Witamy na stronie startowej<br>
-<spring:message code="homepage.welcome"/><br>
-<a href="/admin/createUser">Creat User</a><br>,
-<a href="/login">Login</a><br>
-
-
 
 <!-- Header -->
 <div id="header">
@@ -46,8 +40,8 @@ Witamy na stronie startowej<br>
 
         <!-- Logo -->
         <div id="logo">
-            <h1><a href="#">Linear</a></h1>
-            <span class="tag">By TEMPLATED</span>
+            <h1><a href="#">OffDrive</a></h1>
+            <span class="tag">by pojechali.pl</span>
         </div>
     </div>
 </div>
@@ -56,7 +50,7 @@ Witamy na stronie startowej<br>
 <div id="featured">
     <div class="container">
         <header>
-            <h2>Welcome to Linear</h2>
+            <h2><spring:message code="homepage.welcome"/></h2>
         </header>
         <p>This is <strong>Linear</strong>, a responsive HTML5 site template freebie by <a href="http://templated.co">TEMPLATED</a>. Released for free under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so use it for whatever (personal or commercial) &ndash; just give us credit! Check out more of our stuff at <a href="http://templated.co">our site</a> or follow us on <a href="http://twitter.com/templatedco">Twitter</a>.</p>
         <hr />
