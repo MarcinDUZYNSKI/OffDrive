@@ -41,9 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin()
                 .loginPage("/login")//adres url do strony logowania
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/index/index",true)
+                .defaultSuccessUrl("/index/trip",true)
                 .failureUrl("/admin/403")
-                .and().logout().logoutSuccessUrl("/") //akcja przenieśe po wylogowaniu pod wskazany adres
+                .and().logout().logoutSuccessUrl("/home") //akcja przeniesie po wylogowaniu pod wskazany adres
                 .permitAll()
                 .and().exceptionHandling().accessDeniedPage("/403");
 

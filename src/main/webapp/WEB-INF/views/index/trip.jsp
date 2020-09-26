@@ -10,7 +10,7 @@
     </style>
 </head>
 <body>
-Zapisz swoją trasę: <br>
+Share Yours Trip <br>
 <form:form modelAttribute="tripWithTripCondition" method="post">
     <table>
         <tr>

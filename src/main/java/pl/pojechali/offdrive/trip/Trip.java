@@ -10,6 +10,8 @@ import pl.pojechali.offdrive.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,11 +28,10 @@ public class Trip {
     private long id;
     @NotBlank
     private String name;
-    @NotBlank
     private LocalDateTime tripDate;
-    @NotBlank
-    private Time tripTime;
-    @NotBlank
+    @NotNull
+    private int tripTime;
+    @NotNull
     private int length;
     private int tripAltitude;
     @ManyToOne
