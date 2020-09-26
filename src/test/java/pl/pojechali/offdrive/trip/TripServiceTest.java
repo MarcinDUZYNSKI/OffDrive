@@ -1,15 +1,9 @@
 package pl.pojechali.offdrive.trip;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.test.context.ActiveProfiles;
 import pl.pojechali.offdrive.tripCondition.TripCondition;
-import pl.pojechali.offdrive.user.UserRepository;
 
-import javax.persistence.EntityManager;
+import java.util.List;
 
 class TripServiceTest {
 
@@ -19,7 +13,7 @@ class TripServiceTest {
 //    }
 
     @Test
-    public void giveNewTrip_whenSave_thenTripIsSave(){
+    public void giveNewTrip_whenSave_thenTripIsSave() {
         Trip trip = new Trip();
         TripService tripService = new TripService() {
             @Override
@@ -30,12 +24,18 @@ class TripServiceTest {
             public void saveTripCondition(TripCondition tripCondition) {
 
             }
+
+            @Override
+            public List<Trip> findUserTripList() {
+                return null;
+            }
         };
     }
-@Test
-    public void givenNewTripCondition_whenSaveTripCondition_thenConditionIsSave(){
 
-}
+    @Test
+    public void givenNewTripCondition_whenSaveTripCondition_thenConditionIsSave() {
+
+    }
 
 
     // stwórz mowy trip
@@ -47,9 +47,6 @@ class TripServiceTest {
     //wyszukaj tripy usera
 
 }
-
-
-
 
 
 // testujemy poprawność założeń do zapisu usera np uniq czy notBlank

@@ -25,7 +25,6 @@ public class TripServiceImp implements TripService {
         tripRepository.save(trip);
     }
 
-
     @Override
     public void saveTripCondition(TripCondition tripCondition) {
         tripConditionsRepository.save(tripCondition);
@@ -33,11 +32,12 @@ public class TripServiceImp implements TripService {
 
     /**
      * Return Array list of Trip Current login user
+     *
      * @return
      */
-    public List<Trip> findUserTripList (){
-        System.out.println( "Id zalogowanego usera =  " +  userService.getCurrentLoginUser().getId());
-       return tripRepository.findAllByUserId(userService.getCurrentLoginUser().getId());
+    @Override
+    public List<Trip> findUserTripList() {
+        return tripRepository.findAllByUserId(userService.getCurrentLoginUser().getId());
     }
 }
 

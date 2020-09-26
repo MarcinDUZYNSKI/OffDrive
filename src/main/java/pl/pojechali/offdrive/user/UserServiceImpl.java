@@ -51,9 +51,6 @@ public class UserServiceImpl implements UserService {
             username = principal.toString();
         }
         return (userRepository.findUserByEmail(username));
-
     }
-
-
 }
 
