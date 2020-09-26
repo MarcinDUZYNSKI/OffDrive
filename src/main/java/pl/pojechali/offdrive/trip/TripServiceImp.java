@@ -39,5 +39,10 @@ public class TripServiceImp implements TripService {
     public List<Trip> findUserTripList() {
         return tripRepository.findAllByUserId(userService.getCurrentLoginUser().getId());
     }
+
+    public Trip findTripById(long id) {
+        return tripRepository.findById(id).get();
+
+    }
 }
 

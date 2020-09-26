@@ -9,6 +9,7 @@ import pl.pojechali.offdrive.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,13 +26,13 @@ public class Route {
     private long id;
     @NotBlank
     private String name;
-    @NotBlank
+    @NotNull
     private int length;
-    @NotBlank
+    // przez ciekawość jaka tu powinna być prawidłowa adnitacja  dla validacji ???
     private LocalDateTime publicDate;
     //https://github.com/jenetics/jpx    biblioteka do tras
 //    private GPX rout;
-    @NotBlank
+//    @NotNull
     private int routeAltitude;
     private int tripCount;
     @ManyToOne

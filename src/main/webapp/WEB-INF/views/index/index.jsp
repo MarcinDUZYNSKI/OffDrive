@@ -65,6 +65,7 @@
                     <th>Trip Name</th>
                     <th>Length</th>
                     <th>Time</th>
+                    <th>Create Route from Trip</th>
                 </tr>
                 <c:forEach items="${allUserTrips}" var="trip">
                     <tr>
@@ -72,6 +73,9 @@
                         <td>${trip.name}</td>
                         <td>${trip.length}</td>
                         <td>${trip.tripTime}</td>
+                        <td>
+                            <a href="/index/createRoute/${trip.id}">Create</a>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
