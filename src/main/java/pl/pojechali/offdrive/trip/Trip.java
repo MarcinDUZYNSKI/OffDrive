@@ -10,10 +10,7 @@ import pl.pojechali.offdrive.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,6 +20,8 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class Trip {
     public final static String TABLE = "t_trip";
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

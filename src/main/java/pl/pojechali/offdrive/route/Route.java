@@ -10,6 +10,7 @@ import pl.pojechali.offdrive.user.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -27,7 +28,7 @@ public class Route {
     @NotBlank
     private int length;
     @NotBlank
-    private LocalDate publicDate;
+    private LocalDateTime publicDate;
     //https://github.com/jenetics/jpx    biblioteka do tras
 //    private GPX rout;
     @NotBlank
