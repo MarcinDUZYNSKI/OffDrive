@@ -8,13 +8,13 @@
     <meta name="keywords" content="" />
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../js/skel.min.js"></script>
-    <script src="../js/skel-panels.min.js"></script>
-    <script src="../js/init.js"></script>
+    <script src="..\js/skel.min.js"></script>
+    <script src="..\js/skel-panels.min.js"></script>
+    <script src="..\js/init.js"></script>
     <noscript>
-        <link rel="stylesheet" href="../css/skel-noscript.css" type="text/css"/>
-        <link rel="stylesheet" href="../css/style.css" type="text/css"/>
-        <link rel="stylesheet" href="../css/style-desktop.css" type="text/css"/>
+        <link rel="stylesheet" href="..\css/skel-noscript.css" type="text/css"/>
+        <link rel="stylesheet" href="..\css/style.css" type="text/css"/>
+        <link rel="stylesheet" href="..\css/style-desktop.css" type="text/css"/>
     </noscript>
 
 </head>
@@ -27,10 +27,19 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
+
+
+
+
                 <li class="active"><a href="">Homepage</a></li>
                 <li><a href="/index/trip">Create Trip</a></li>
                 <li><a href="/home">Choose Route</a></li>
                 <li><a href="/home">See Yours Trip</a></li>
+
+
+
+
+
                 <%--                <li><a href="right-sidebar.html">Right Sidebar</a></li>--%>
                 <%--                <li><a href="no-sidebar.html">No Sidebar</a></li>--%>
             </ul>

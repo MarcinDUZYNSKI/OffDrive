@@ -1,6 +1,8 @@
 package pl.pojechali.offdrive.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.pojechali.offdrive.security.UserAlreadyExistException;
@@ -25,8 +27,8 @@ public class UserServiceImpl implements UserService {
     }
 
     public void saveUser(User user) throws UserAlreadyExistException {
-        if(checkIfUserExist(user.getEmail())) {
-            throw new UserAlreadyExistException ("User already exists for this email");
+        if (checkIfUserExist(user.getEmail())) {
+            throw new UserAlreadyExistException("User already exists for this email");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEnabled(1);
@@ -40,6 +42,17 @@ public class UserServiceImpl implements UserService {
         return userRepository.findUserByEmail(email) != null ? true : false;
     }
 
+    public User getCurrentLoginUser() {
+        String username;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        return (userRepository.findUserByEmail(username));
+
+    }
 
 
 }
