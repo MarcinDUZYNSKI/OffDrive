@@ -1,11 +1,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="..\js/skel.min.js"></script>
@@ -28,16 +29,10 @@
         <nav id="nav">
             <ul>
 
-
-
-
                 <li class="active"><a href="">Homepage</a></li>
                 <li><a href="/index/trip">Create Trip</a></li>
                 <li><a href="/home">Choose Route</a></li>
                 <li><a href="/home">See Yours Trip</a></li>
-
-
-
 
 
                 <%--                <li><a href="right-sidebar.html">Right Sidebar</a></li>--%>
@@ -61,25 +56,54 @@
         <header>
             <h2><spring:message code="homepage.welcome"/></h2>
         </header>
-        <p>This is <strong>Linear</strong>, a responsive HTML5 site template freebie by <a href="http://templated.co">TEMPLATED</a>. Released for free under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so use it for whatever (personal or commercial) &ndash; just give us credit! Check out more of our stuff at <a href="http://templated.co">our site</a> or follow us on <a href="http://twitter.com/templatedco">Twitter</a>.</p>
-        <hr />
+
+        <div>
+            <h3>All Tours Trips</h3><br>
+            <table>
+                <tr>
+                    <th>Trip Data</th>
+                    <th>Trip Name</th>
+                    <th>Length</th>
+                    <th>Time</th>
+                </tr>
+                <c:forEach items="${allUserTrips}" var="trip">
+                    <tr>
+                        <td>${trip.tripDate}</td>-+
+                        <td>${trip.name}</td>
+                        <td>${trip.length}</td>
+                        <td>${trip.tripTime}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+        <br>
+
+        <p>This is <strong>Linear</strong>, a responsive HTML5 site template freebie by <a href="http://templated.co">TEMPLATED</a>.
+            Released for free under the <a href="http://templated.co/license">Creative Commons Attribution</a> license,
+            so use it for whatever (personal or commercial) &ndash; just give us credit! Check out more of our stuff at
+            <a href="http://templated.co">our site</a> or follow us on <a
+                    href="http://twitter.com/templatedco">Twitter</a>.</p>
+        <hr/>
         <div class="row">
             <section class="4u">
                 <span class="pennant"><span class="fa fa-briefcase"></span></span>
                 <h3>Maecenas luctus lectus</h3>
-                <p>Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit in, mattis placerat, nulla. Sed ac leo.</p>
+                <p>Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit
+                    in, mattis placerat, nulla. Sed ac leo.</p>
                 <a href="#" class="button button-style1">Read More</a>
             </section>
             <section class="4u">
                 <span class="pennant"><span class="fa fa-lock"></span></span>
                 <h3>Maecenas luctus lectus</h3>
-                <p>Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec magna.</p>
+                <p>Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies
+                    quis, justo. Donec magna.</p>
                 <a href="#" class="button button-style1">Read More</a>
             </section>
             <section class="4u">
                 <span class="pennant"><span class="fa fa-globe"></span></span>
                 <h3>Maecenas luctus lectus</h3>
-                <p>Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit in, mattis placerat, nulla. Sed ac leo.</p>
+                <p>Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit
+                    in, mattis placerat, nulla. Sed ac leo.</p>
                 <a href="#" class="button button-style1">Read More</a>
             </section>
 
@@ -97,14 +121,18 @@
                 <header>
                     <h2>Mauris vulputate dolor</h2>
                 </header>
-                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum.</p>
+                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra
+                    vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus
+                    at urna congue rutrum.</p>
             </section>
             <section class="6u">
                 <a href="#" class="image full"><img src="/images/pic02.jpg" alt=""></a>
                 <header>
                     <h2>Mauris vulputate dolor</h2>
                 </header>
-                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum.</p>
+                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra
+                    vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus
+                    at urna congue rutrum.</p>
             </section>
         </div>
 
@@ -114,14 +142,18 @@
                 <header>
                     <h2>Mauris vulputate dolor</h2>
                 </header>
-                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum.</p>
+                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra
+                    vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus
+                    at urna congue rutrum.</p>
             </section>
             <section class="6u">
                 <a href="#" class="image full"><img src="/images/pic04.jpg" alt=""></a>
                 <header>
                     <h2>Mauris vulputate dolor</h2>
                 </header>
-                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum.</p>
+                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra
+                    vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus
+                    at urna congue rutrum.</p>
             </section>
         </div>
 
@@ -132,7 +164,9 @@
 <div id="tweet">
     <div class="container">
         <section>
-            <blockquote>&ldquo;In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat.&rdquo;</blockquote>
+            <blockquote>&ldquo;In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque
+                viverra vulputate enim. Aliquam erat volutpat.&rdquo;
+            </blockquote>
         </section>
     </div>
 </div>
@@ -158,7 +192,8 @@
 <!-- Copyright -->
 <div id="copyright">
     <div class="container">
-        Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
+        Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a
+            href="http://unsplash.com/cc0">CC0</a>)
     </div>
 </div>
 

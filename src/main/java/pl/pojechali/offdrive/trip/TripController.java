@@ -28,4 +28,5 @@ public class TripController {
         tripService.saveTripCondition(tripWithTripCondition.getTripCondition());
         return "index/index";
     }
+
 }
