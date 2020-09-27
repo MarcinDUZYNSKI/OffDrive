@@ -9,6 +9,7 @@ import pl.pojechali.offdrive.user.UserServiceImpl;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.DuplicateFormatFlagsException;
 import java.util.List;
 
 @Data
@@ -26,7 +27,10 @@ public class RouteServiceImpl implements RouteService{
     @Override
     public void saveRouteFromTrip(Trip trip) {
         if (trip == null){
-            NullPointerException tripNPE;
+           throw new  NullPointerException (" Can't created Route Trip is null ");
+        }
+        if (!checkAlreadyExistRoutFromTrip(trip)){
+            throw new DuplicateFormatFlagsException(" Route already exist! Can't save the same. ");
         }
         Route route = new Route();
         List<Trip> tripList = new ArrayList<>();
@@ -42,6 +46,17 @@ public class RouteServiceImpl implements RouteService{
         routeRepository.save(route);
     }
 
+    private Boolean checkAlreadyExistRoutFromTrip(Trip trip){
+        for (Route r : routeRepository.findAll()) {
+           if (!r.getName().equalsIgnoreCase(trip.getName().concat(" by " + trip.getUser().getNickName()))) {
+               return false;
+            }
+           if (r.getLength()==trip.getLength() && r.getUser().getId()==trip.getUser().getId() && r.getRouteAltitude()==trip.getTripAltitude()){
+               return false;
+           }
+        }return true;
+    }
+
     @Override
     public void saveRouteFromFile() {
 
@@ -55,5 +70,16 @@ public class RouteServiceImpl implements RouteService{
     @Override
     public List<Route> findRoutesByCoordinates() {
         return null;
+    }
+
+    @Override
+    public List<Route> findUserRouteList() {
+        return routeRepository.findAllByUserId(userService.getCurrentLoginUser().getId());
+
+    }
+
+    @Override
+    public List<Route> findRouteListByUserId(long id) {
+        return routeRepository.findAllByUserId(id);
     }
 }

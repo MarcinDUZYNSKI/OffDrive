@@ -9,5 +9,7 @@ public interface RouteService {
     void saveRouteFromFile(); // do stworzenia trasy wcześniej przejechanej z zaimportowanego pliku
     List<Route> findRoutesByName(String name); // wyszukaj trasy po liście
     List<Route> findRoutesByCoordinates(); //wyszukaj route po współrzędnych
+    List<Route> findUserRouteList(); // wyszukaj wszystkie route aktywnego user
+    List<Route> findRouteListByUserId(long id); // wszystkie route wskazanego user
 
 }
