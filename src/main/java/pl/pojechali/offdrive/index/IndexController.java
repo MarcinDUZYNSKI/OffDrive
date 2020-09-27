@@ -3,12 +3,10 @@ package pl.pojechali.offdrive.index;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.pojechali.offdrive.route.RouteServiceImpl;
-import pl.pojechali.offdrive.trip.Trip;
 import pl.pojechali.offdrive.trip.TripServiceImp;
 
 @Controller
@@ -34,7 +32,7 @@ public class IndexController {
 //        }
         routeService.saveRouteFromTrip(tripService.findTripById(id));
 //        return "/index/index";  // czemu po zawołaniu górnego adresu return nie przenosi dalej tylko adres w przeglądarce zostaje z żądania?? Oraz wyświetla się bez GET-a
-   return "redirect:/index/index";
+   return "redirect:/index";
 
     }
 
