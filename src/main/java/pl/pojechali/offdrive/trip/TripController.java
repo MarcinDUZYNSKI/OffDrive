@@ -22,11 +22,11 @@ public class TripController {
     @RequestMapping(value = {"/index/trip"}, method = RequestMethod.POST)
     public String saveTrip(@Valid TripWithTripCondition tripWithTripCondition, BindingResult result){
         if (result.hasErrors()){
-            return "index/index";
+            return "index";
         }
         tripService.saveTrip(tripWithTripCondition.getTrip());
         tripService.saveTripCondition(tripWithTripCondition.getTripCondition());
-        return "index/index";
+        return "index";
     }
 
 }

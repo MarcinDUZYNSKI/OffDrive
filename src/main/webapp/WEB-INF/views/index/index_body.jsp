@@ -1,126 +1,113 @@
-<section class="padding-large bg-light">
-    <div id="carouselExampleControls" class="carousel slide main-slider" data-ride="carousel">
-        <div class="carousel-inner container">
-            <div class="carousel-item active">
-                <div class="container w-75 d-flex">
-                    <div class="carousel-caption d-block">
-                        <h1>INDEX BODY carousel item active</h1>
-                        <h3> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua.</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container w-75 d-flex">
-                    <div class="carousel-caption d-block">
-                        <h1>INDEX BODY carousel item 1</h1>
-                        <h3> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua.</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container w-75 d-flex">
-                    <div class="carousel-caption d-block">
-                        <h1>INDEX BODY carousel item 2</h1>
-                        <h3> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua.</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</section>
-
-<section class="section-more padding-small">
-    <div class="container d-flex justify-content-between">
-        <div class="mr-4">
-            <h1 class="pb-3">INDEX BODY section-more padding-small</h1>
-            <h4 class="pt-1">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua.</h4>
-        </div>
-        <div class="ml-4 align-self-center">
-            <button class="btn btn-color rounded-0 mt-4 pl-4 pr-4">
-                <a href="../../index.jsp">Lorem ipsum</a>
-            </button>
-        </div>
-    </div>
-</section>
-
-<section class="padding-small details bg-light">
+<!-- Featured -->
+<div id="featured">
     <div class="container">
+        <header>
+            <h2><spring:message code="homepage.welcome"/></h2>
+        </header>
+
+<%--        <div>--%>
+<%--            <h3>All Tours Trips</h3><br>--%>
+<%--            <table>--%>
+<%--                <tr>--%>
+<%--                    <th>Trip Data</th>--%>
+<%--                    <th>Trip Name</th>--%>
+<%--                    <th>Length</th>--%>
+<%--                    <th>Time</th>--%>
+<%--                </tr>--%>
+<%--                <c:forEach items="${allUserTrips}" var="trip">--%>
+<%--                    <tr>--%>
+<%--                        <td>${trip.tripDate}</td>-+--%>
+<%--                        <td>${trip.name}</td>--%>
+<%--                        <td>${trip.length}</td>--%>
+<%--                        <td>${trip.tripTime}</td>--%>
+<%--                    </tr>--%>
+<%--                </c:forEach>--%>
+<%--            </table>--%>
+<%--        </div>--%>
+        <br>
+        <hr/>
         <div class="row">
-            <div class="col text-center">
-                <i class="fas fa-check icon-details"></i>
-                <h1>INDEX BODY padding-small details bg-light</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem. Aliquam erat
-                    volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.
-                </p>
-            </div>
-            <div class="col text-center pr-4 pl-4 mr-4 ml-4">
-                <i class="far fa-clock icon-details"></i>
-                <h1>INDEX BODY col text-center pr-4 pl-4 mr-4 ml-4 </h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem. Aliquam erat
-                    volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.
-                </p>
-            </div>
-            <div class="col text-center">
-                <i class="fas fa-list icon-details"></i>
-                <h1>INDEX BODY col text-center</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem. Aliquam erat
-                    volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.
-                </p>
-            </div>
+            <section class="4u">
+                <span class="pennant"><span class="fa fa-briefcase"></span></span>
+                <h3>Maecenas luctus lectus</h3>
+                <p>Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit
+                    in, mattis placerat, nulla. Sed ac leo.</p>
+                <a href="#" class="button button-style1">Read More</a>
+            </section>
+            <section class="4u">
+                <span class="pennant"><span class="fa fa-lock"></span></span>
+                <h3>Maecenas luctus lectus</h3>
+                <p>Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies
+                    quis, justo. Donec magna.</p>
+                <a href="#" class="button button-style1">Read More</a>
+            </section>
+            <section class="4u">
+                <span class="pennant"><span class="fa fa-globe"></span></span>
+                <h3>Maecenas luctus lectus</h3>
+                <p>Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit
+                    in, mattis placerat, nulla. Sed ac leo.</p>
+                <a href="#" class="button button-style1">Read More</a>
+            </section>
         </div>
-    </div>
-</section>
+        <!-- Main -->
+        <div id="main">
+            <div id="content" class="container">
 
-
-<section class="newsletter-section padding-small">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>INDEX BODY newsletter-section padding-small</h1>
-            </div>
-            <div class="col-5">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control border-0 rounded-0" placeholder=""
-                           aria-label="Recipient's username" aria-describedby="basic-addon3">
-                    <div class="input-group-append">
-                        <button class="input-group-text btn-color border-0 rounded-0" type="submit" id="basic-addon3">
-                            <a href="../../index.jsp">Lorem</a>
-                        </button>
-                    </div>
+                <div class="row">
+                    <section class="6u">
+                        <a href="#" class="image full"><img src="/images/pic01.jpg" alt=""></a>
+                        <header>
+                            <h2>Mauris vulputate dolor</h2>
+                        </header>
+                        <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra
+                            vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus
+                            at urna congue rutrum.</p>
+                    </section>
+                    <section class="6u">
+                        <a href="#" class="image full"><img src="/images/pic02.jpg" alt=""></a>
+                        <header>
+                            <h2>Mauris vulputate dolor</h2>
+                        </header>
+                        <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra
+                            vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus
+                            at urna congue rutrum.</p>
+                    </section>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="padding-medium story bg-light" id="about">
-    <div class="container d-flex justify-content-center align-items-center">
-        <div class="row">
-            <div class="col-4 mr-4">
-                <div class="div-img">
+                <div class="row">
+                    <section class="6u">
+                        <a href="#" class="image full"><img src="/images/pic03.jpg" alt=""></a>
+                        <header>
+                            <h2>Mauris vulputate dolor</h2>
+                        </header>
+                        <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra
+                            vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus
+                            at urna congue rutrum.</p>
+                    </section>
+                    <section class="6u">
+                        <a href="#" class="image full"><img src="/images/pic04.jpg" alt=""></a>
+                        <header>
+                            <h2>Mauris vulputate dolor</h2>
+                        </header>
+                        <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra
+                            vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus
+                            at urna congue rutrum.</p>
+                    </section>
                 </div>
-            </div>
 
-            <div class="col-7 ml-4">
-                <h1 class="pb-1">INDEX BODY padding-medium story bg-light</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem. Aliquam erat
-                    volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed. Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit. Aliquam at porttitor sem. Aliquam erat volutpat. Donec
-                    placerat nisl magna, et faucibus arcu condimentum sed.
-                </p>
+            </div>
+        </div>
+
+        <!-- Tweet -->
+        <div id="tweet">
+            <div class="container">
+                <section>
+                    <blockquote>&ldquo;In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque
+                        viverra vulputate enim. Aliquam erat volutpat.&rdquo;
+                    </blockquote>
+                </section>
             </div>
         </div>
     </div>
-</section>
+</div>
+

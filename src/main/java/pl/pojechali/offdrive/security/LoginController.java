@@ -14,7 +14,7 @@ public class LoginController {
     @RequestMapping(value = {"/perform_login"}, method = RequestMethod.POST)
     public String login2() {
 //        System.out.println("nie działa ");
-        return "index/index"; //lokalizację pliku widoku  tylko że to nie dzała bo kontrolęnadrzędną posada Security config
+        return "index"; //lokalizację pliku widoku  tylko że to nie dzała bo kontrolęnadrzędną posada Security config
 
     }
 
