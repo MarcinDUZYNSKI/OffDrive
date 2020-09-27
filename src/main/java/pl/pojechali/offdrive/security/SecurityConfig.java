@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin()
                 .loginPage("/login")//adres url do strony logowania
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/index/index",true) // czy to zawsze przenosi po zalogowaniu bez względu jak jest w controlerze??
+                .defaultSuccessUrl("/index",true) // czy to zawsze przenosi po zalogowaniu bez względu jak jest w controlerze??
                 .failureUrl("/admin/403")
                 .and().logout().logoutSuccessUrl("/home") //akcja przeniesie po wylogowaniu pod wskazany adres
                 .permitAll()

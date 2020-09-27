@@ -25,12 +25,12 @@ public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotBlank
+    @NotBlank(message = "Please provide name")
     private String name;
     private LocalDateTime tripDate;
-    @NotNull
+    @NotNull(message = "Please provide trip time")
     private int tripTime;
-    @NotNull
+    @NotNull(message = "Please provide trip length")
     private int length;
     private int tripAltitude;
     @ManyToOne

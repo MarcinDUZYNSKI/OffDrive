@@ -17,11 +17,15 @@ public class IndexController {
     private final TripServiceImp tripService;
     private final RouteServiceImpl routeService;
 
-    @RequestMapping(value = {"/index/index"}, method = RequestMethod.GET)
-    public String findAllUserTrips(Model model) {
-        model.addAttribute("allUserTrips", tripService.findUserTripList());
-        return "index/index";
-    }
+  @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
+  public String showIndex(Model model){
+    return "index";
+  }
+  @RequestMapping(value = {"/index/user_trips"}, method = RequestMethod.GET)
+  public String findAllUserTrips(Model model){
+    model.addAttribute("allUserTrips", tripService.findUserTripList());
+    return "index";
+  }
 
     @RequestMapping(value = {"/index/createRoute/{id}"})
     public String saveRoute(@PathVariable long id) { // trzeba dorobić zabezpieczenie żeby nie można było stworzyć ponownie Route z już stworzonego Tripa

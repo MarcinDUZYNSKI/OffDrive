@@ -1,12 +1,27 @@
 <footer class="footer-section pt-3 pb-3">
-    <div class="container text-center">
-        <h5 class="text-light">Copyright <span class="footer-text-color">OffDrive.pl</span></h5>
+    <!-- Footer -->
+    <div id="footer">
+        <div class="container">
+            <section>
+                <header>
+                    <h2>Get in touch</h2>
+                    <span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>
+                </header>
+                <ul class="contact">
+                    <li><a target="_blank" href="http://www.facebook.com/pojechalipl"><i
+                            class="fa fa-facebook-square fa-fw"></i></a></li>
+                    <li><a target="_blank" href="http://instagram.com/pojechali.pl"><i
+                            class="fa fa-instagram fa-fw"></i></a></li>
+                    <li><a href="http://pojechali.pl/"><i class="fa fa-dribbble"></i></a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <!-- Copyright -->
+    <div id="copyright">
+        <div class="container">
+            Design: <a href="http://templated.co">TEMPLATED</a> Images: <a
+                href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
+        </div>
     </div>
 </footer>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
