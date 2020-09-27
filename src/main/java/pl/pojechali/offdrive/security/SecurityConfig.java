@@ -34,8 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                //.antMatchers("/about").authenticated()
+                .antMatchers( "/home").permitAll()
+                .antMatchers("/index").authenticated()
                 //.antMatchers("/admin/**").hasRole("ADMIN")  //dostęp dla roli admina do serwisu /admin/**
                 //.antMatchers("/about/**").hasAnyRole("USER", "ADMIN") // dostęp dla wszystkich ról
                 .and().formLogin()
