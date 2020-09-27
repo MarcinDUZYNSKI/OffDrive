@@ -17,22 +17,22 @@ public class TripController {
     @RequestMapping(value = {"/index/trip"}, method = RequestMethod.GET)
     public String createTrip(Model model){
         model.addAttribute("tripWithTripCondition", new TripWithTripCondition());
-        return "index/trip";
-//        return "trip/trip";
+        return "trip/trip";
+
     }
     @RequestMapping(value = {"/index/trip"}, method = RequestMethod.POST)
     public String saveTrip(@Valid TripWithTripCondition tripWithTripCondition, BindingResult result){
         if (result.hasErrors()){
-            return "index";
+//            return "index";
 //            return "index/trip";
-//            return "trip/trip"; // do uporządkowania wszystko dostępne po zalogowaniu ma być po ścieżce index
+            return "trip/trip"; // do uporządkowania wszystko dostępne po zalogowaniu ma być po ścieżce index
         }
         tripService.saveTrip(tripWithTripCondition.getTrip());
         tripService.saveTripCondition(tripWithTripCondition.getTripCondition());
         return "redirect:/index";
 
     }
-    @RequestMapping("/trip/user_trips")
+    @RequestMapping("/index/user_trips")
     public String findAllUserTrips(Model model){
         model.addAttribute("allUserTrips", tripService.findUserTripList());
         return "trip/user_trips";
