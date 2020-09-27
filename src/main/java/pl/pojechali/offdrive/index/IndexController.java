@@ -19,14 +19,6 @@ public class IndexController {
 
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
     public String showIndex(Model model) {
-//      return "index";
-//  }
-//  @RequestMapping(value = {"/index/user_trips"}, method = RequestMethod.GET)
-//  public String findAllUserTrips(Model model){
-
-
-
-//        model.addAttribute("allUserTrips", tripService.findUserTripList()); // prawdopodobnie do przeniesienia do trip
         return "index";
     }
 
@@ -39,7 +31,7 @@ public class IndexController {
         routeService.saveRouteFromTrip(tripService.findTripById(id));
     }catch (DuplicateFormatFlagsException dffe){
             dffe.printStackTrace();
-            return "redirect:/home";
+            return "redirect:/home"; // do poprawienie przekierowanie przy zapisie już istniejącego route
         }
 //        return "/index/index";  // czemu po zawołaniu górnego adresu return nie przenosi dalej tylko adres w przeglądarce zostaje z żądania?? Oraz wyświetla się bez GET-a
         return "redirect:/index";

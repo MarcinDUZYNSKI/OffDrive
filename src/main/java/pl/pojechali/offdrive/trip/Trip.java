@@ -43,7 +43,7 @@ public class Trip {
     private User user;
     @ManyToOne
     private Route route;
-    @OneToOne(mappedBy = "trip")   //jeden Trip posiada jedne warunki (nie posiada wiele warónków)
+    @OneToOne(mappedBy = "trip")   //jeden Trip posiada jedne warunki (nie posiada wiele warónków)  dlaczego do tabeli tripCondition nie zapoisuję się ID tripów???
     private TripCondition tripCondition;
     @OneToOne(mappedBy = "trip")   // jeden trip posiada jedenCarAttribiute bo jedzie tylko jeden sanochód na jednej wyciczce
     private CarAttribute carAttribute;

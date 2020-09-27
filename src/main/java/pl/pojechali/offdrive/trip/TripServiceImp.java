@@ -46,6 +46,16 @@ public class TripServiceImp implements TripService {
         return tripRepository.findAllByUserId(userService.getCurrentLoginUser().getId());
     }
 
+    @Override
+    public void updateTrip(Trip trip) {
+        tripRepository.save(trip);
+    }
+
+    @Override
+    public TripCondition findTripConditionByTripId(long id) {
+       return tripConditionsRepository.findByTripId(id);
+    }
+
     public Trip findTripById(long id) {
         return tripRepository.findById(id).get();
 

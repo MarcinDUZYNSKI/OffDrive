@@ -29,6 +29,16 @@ class TripServiceTest {
             public List<Trip> findUserTripList() {
                 return null;
             }
+
+            @Override
+            public void updateTrip(Trip trip) {
+
+            }
+
+            @Override
+            public TripCondition findTripConditionByTripId(long id) {
+                return null;
+            }
         };
     }
 

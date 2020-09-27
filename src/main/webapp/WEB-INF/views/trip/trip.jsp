@@ -28,6 +28,8 @@
             <div class="container w-50">
                 Share Yours Trip <br>
                 <form:form modelAttribute="tripWithTripCondition" method="post">
+                    <form:hidden path="trip.id"/>
+                    <form:hidden path="tripCondition.id"/>
                     <table>
                         <tr>
                             <th>Trip Parameter:</th>
