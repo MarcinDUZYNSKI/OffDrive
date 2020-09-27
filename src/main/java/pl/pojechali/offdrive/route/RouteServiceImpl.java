@@ -38,6 +38,7 @@ public class RouteServiceImpl implements RouteService{
         route.setRouteAltitude(trip.getTripAltitude());
         route.setTripCount(1);
         route.setTrips(tripList);
+        route.setDescription(trip.getDescription());
         routeRepository.save(route);
     }
 

@@ -52,6 +52,10 @@
                             <td>Trip delta of Altitude:</td>
                             <td><form:input path="trip.tripAltitude"/></td>
                         </tr>
+                        <tr>
+                            <td>Trip description:</td>
+                            <td><form:input path="trip.description"/></td>
+                        </tr>
                     </table>
 
                     <table>

@@ -7,7 +7,11 @@ import pl.pojechali.offdrive.tripCondition.TripConditionsRepository;
 import pl.pojechali.offdrive.user.UserServiceImpl;
 
 import javax.transaction.Transactional;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -21,6 +25,8 @@ public class TripServiceImp implements TripService {
     @Override
     public void saveTrip(Trip trip) {
         trip.setTripDate(LocalDateTime.now());
+        trip.setCreatedDate(LocalDate.now());
+        trip.setCreatedTime(LocalTime.now());
         trip.setUser(userService.getCurrentLoginUser());
         tripRepository.save(trip);
     }

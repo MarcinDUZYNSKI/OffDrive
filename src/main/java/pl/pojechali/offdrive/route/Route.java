@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -30,11 +31,15 @@ public class Route {
     private int length;
     // przez ciekawość jaka tu powinna być prawidłowa adnitacja  dla validacji ???
     private LocalDateTime publicDate;
+    private LocalDate cratedDate;
+    private LocalTime createdTime;
     //https://github.com/jenetics/jpx    biblioteka do tras
 //    private GPX rout;
 //    @NotNull
     private int routeAltitude;
     private int tripCount;
+    @Column(columnDefinition = "text", length = 3000) // jak zrobić żeby to pole w banie miało tą długość???
+    private String description;
     @ManyToOne
     private User user;
     @OneToMany(mappedBy = "route")

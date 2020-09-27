@@ -11,7 +11,9 @@ import pl.pojechali.offdrive.user.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = Trip.TABLE)
@@ -25,14 +27,18 @@ public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotBlank(message = "Please provide name")
+    @NotBlank(message = "Please provide name")  //nie działa walidacja wyświetla 500
     private String name;
+    private LocalDate createdDate;
+    private LocalTime createdTime;
     private LocalDateTime tripDate;
     @NotNull(message = "Please provide trip time")
     private int tripTime;
     @NotNull(message = "Please provide trip length")
     private int length;
     private int tripAltitude;
+    @Column(columnDefinition = "text", length = 3000)
+    private String description;
     @ManyToOne
     private User user;
     @ManyToOne
