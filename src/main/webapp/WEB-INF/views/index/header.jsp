@@ -4,10 +4,10 @@
             <!-- Nav -->
             <nav id="nav">
                 <ul>
-                    <li class="active"><a href="">Homepage</a></li>
+                    <li class="active"><a href="/home">Homepage</a></li>
                     <li><a href="/index/trip">Create Trip</a></li>
-                    <li><a href="/home">Choose Route</a></li>
-                    <li><a href="/home">See Yours Trip</a></li>
+                    <li><a href="/home">Find Route</a></li>
+                    <li><a href="/trip/user_trips">See Your Trips</a></li>
                 </ul>
             </nav>
         </div>

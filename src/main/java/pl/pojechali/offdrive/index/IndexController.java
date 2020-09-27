@@ -23,7 +23,10 @@ public class IndexController {
 //  }
 //  @RequestMapping(value = {"/index/user_trips"}, method = RequestMethod.GET)
 //  public String findAllUserTrips(Model model){
-        model.addAttribute("allUserTrips", tripService.findUserTripList());
+
+
+
+//        model.addAttribute("allUserTrips", tripService.findUserTripList()); // prawdopodobnie do przeniesienia do trip
         return "index";
     }
 

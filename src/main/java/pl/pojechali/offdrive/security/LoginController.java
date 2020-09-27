@@ -17,5 +17,9 @@ public class LoginController {
         return "index"; //lokalizację pliku widoku  tylko że to nie dzała bo kontrolęnadrzędną posada Security config
 
     }
+    @RequestMapping("/403")
+    public String accessDenied() {
+        return "/admin/403";
+    }
 
 }
