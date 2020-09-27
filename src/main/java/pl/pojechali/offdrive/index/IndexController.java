@@ -29,7 +29,9 @@ public class IndexController {
 //            return "error";
 //        }
         routeService.saveRouteFromTrip(tripService.findTripById(id));
-        return "/index/index";  // czemu po zawołaniu górnego adresu return nie przenosi dalej tylko adres w przeglądarce zostaje z żądania??
+//        return "/index/index";  // czemu po zawołaniu górnego adresu return nie przenosi dalej tylko adres w przeglądarce zostaje z żądania?? Oraz wyświetla się bez GET-a
+   return "redirect:/index/index";
+
     }
 
 }
