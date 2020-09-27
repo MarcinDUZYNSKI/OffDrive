@@ -34,25 +34,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/", "/home").permitAll()
                 //.antMatchers("/about").authenticated()
                 //.antMatchers("/admin/**").hasRole("ADMIN")  //dostęp dla roli admina do serwisu /admin/**
                 //.antMatchers("/about/**").hasAnyRole("USER", "ADMIN") // dostęp dla wszystkich ról
                 .and().formLogin()
-                .loginPage("/login")//adres url do strony logowania
+                .loginPage("/login").permitAll()//adres url do strony logowania
                 .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/index",true) // czy to zawsze przenosi po zalogowaniu bez względu jak jest w controlerze??
-                .failureUrl("/admin/403")
+                .failureUrl("/403")
                 .and().logout().logoutSuccessUrl("/home") //akcja przeniesie po wylogowaniu pod wskazany adres
                 .permitAll()
-                .and().exceptionHandling().accessDeniedPage("/403");
-
+                .and().exceptionHandling().accessDeniedPage("/admin/403");
     }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 }
