@@ -17,10 +17,10 @@ public class IndexController {
 
   @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
   public String showIndex(Model model){
-    return "index";
-  }
-  @RequestMapping(value = {"/index/user_trips"}, method = RequestMethod.GET)
-  public String findAllUserTrips(Model model){
+//      return "index";
+//  }
+//  @RequestMapping(value = {"/index/user_trips"}, method = RequestMethod.GET)
+//  public String findAllUserTrips(Model model){
     model.addAttribute("allUserTrips", tripService.findUserTripList());
     return "index";
   }

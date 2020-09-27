@@ -24,6 +24,32 @@
 <%--                </c:forEach>--%>
 <%--            </table>--%>
 <%--        </div>--%>
+
+        <div>
+            <h3>All Tours Trips</h3><br>
+            <table>
+                <tr>
+                    <th>Trip Data</th>
+                    <th>Trip Name</th>
+                    <th>Length</th>
+                    <th>Time</th>
+                    <th>Create Route from Trip</th>
+                </tr>
+                <c:forEach items="${allUserTrips}" var="trip">
+                    <tr>
+                        <td>${trip.tripDate}</td>-+
+                        <td>${trip.name}</td>
+                        <td>${trip.length}</td>
+                        <td>${trip.tripTime}</td>
+                        <td>
+                            <a href="/index/createRoute/${trip.id}">Create</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+
+
         <br>
         <hr/>
         <div class="row">
