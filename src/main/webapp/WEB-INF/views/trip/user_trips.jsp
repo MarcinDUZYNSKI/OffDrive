@@ -7,7 +7,7 @@
 <body>
 
         <div>
-            <h3>All Tours Trips</h3><br>
+            <h3>All Your Trips</h3><br>
             <table>
                 <tr>
                     <th>Trip Data</th>

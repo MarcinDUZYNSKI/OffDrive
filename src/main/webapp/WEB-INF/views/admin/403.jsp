@@ -11,7 +11,6 @@
     <title>Security with Spring Boot</title>
 </head>
 <body>
-<h1>ACCESS DENIED</h1>
-<a href="/home"><button type="button">Return to Home Page</button></a>
+<a href="/home"><img src="/images/youShallNotPass.jpg" border="0"></a>
 </body>
 </html>
