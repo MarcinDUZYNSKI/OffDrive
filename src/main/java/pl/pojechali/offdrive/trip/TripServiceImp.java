@@ -2,6 +2,8 @@ package pl.pojechali.offdrive.trip;
 
 import lombok.Data;
 import org.springframework.stereotype.Service;
+import pl.pojechali.offdrive.exception.RouteAlreadyExistException;
+import pl.pojechali.offdrive.route.Route;
 import pl.pojechali.offdrive.tripCondition.TripCondition;
 import pl.pojechali.offdrive.tripCondition.TripConditionsRepository;
 import pl.pojechali.offdrive.user.UserServiceImpl;
@@ -57,6 +59,19 @@ public class TripServiceImp implements TripService {
     public Trip findTripById(long id) {
         return tripRepository.findById(id).get();
 
+    }
+
+    public void updateRouteIdInTrip(Trip trip, Route route) throws RouteAlreadyExistException {
+        if (trip==null){
+            throw new NullPointerException (" Trip is Null");
+        }
+        Trip tripToUpdate = tripRepository.findById(trip.getId()).get();
+        if (tripToUpdate.getRoute()!= null){
+            throw new RouteAlreadyExistException( " Route wos already create from this Trip");
+        }else {
+            tripToUpdate.setRoute(route);
+        }
+        tripRepository.save(trip);
     }
 }
 

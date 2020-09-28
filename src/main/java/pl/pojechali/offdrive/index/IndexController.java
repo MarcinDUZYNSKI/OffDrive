@@ -27,12 +27,11 @@ public class IndexController {
 //            return "error";
 //        }  // to przenieść do servisów żęby walidacja była przprowadzana na poziomie servisu dla pużniejszego resta
         try {
-            routeService.saveRouteFromTrip(tripService.findTripById(id));
+            routeService.saveRouteFromTripWithUpdateTrip(tripService.findTripById(id));
         } catch (RouteAlreadyExistException dffe) {
             dffe.printStackTrace();
             return "redirect:/403"; // do poprawienie przekierowanie przy zapisie już istniejącego route
         }
-//        return "/index/index";  // czemu po zawołaniu górnego adresu return nie przenosi dalej tylko adres w przeglądarce zostaje z żądania?? Oraz wyświetla się bez GET-a
         return "redirect:/index";
 
     }

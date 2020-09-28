@@ -10,27 +10,28 @@ import pl.pojechali.offdrive.user.UserServiceImpl;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.DuplicateFormatFlagsException;
 import java.util.List;
 
 @Data
 @Service
 @Transactional
-public class RouteServiceImpl implements RouteService{
+public class RouteServiceImpl implements RouteService {
     private final TripServiceImp tripService;
     private final RouteRepository routeRepository;
     private final UserServiceImpl userService;
 
     /**
      * save Route from exist Trip
+     * sprawdzenie czy route juz istnieje po nazwie i wpisie w trip.route_id
      * @param trip
+     * @return
      */
     @Override
-    public void saveRouteFromTrip(Trip trip) throws RouteAlreadyExistException {
-        if (trip == null){
-           throw new  NullPointerException (" Can't created Route Trip is null ");
+    public Route saveRouteFromTrip(Trip trip) throws RouteAlreadyExistException {
+        if (trip == null) {
+            throw new NullPointerException(" Can't created Route Trip is null ");
         }
-        if (checkAlreadyExistRoutFromTrip(trip)){
+        if (checkAlreadyExistRoutFromTrip(trip)) {
             throw new RouteAlreadyExistException(" Route already exist! Can't save the same. ");
         }
         Route route = new Route();
@@ -38,24 +39,35 @@ public class RouteServiceImpl implements RouteService{
         tripList.add(trip);
         route.setLength(trip.getLength());
         route.setPublicDate(LocalDateTime.now());
-        route.setName(trip.getName().concat(" by " + trip.getUser().getNickName()));
+        route.setName(generateRouteName(trip));
         route.setUser(userService.getCurrentLoginUser());
         route.setRouteAltitude(trip.getTripAltitude());
-//        route.setTripCount(1); // dodatkowo update na tripa.route_id
         route.setTrips(tripList);
         route.setDescription(trip.getDescription());
-        routeRepository.save(route);
+        routeRepository.saveAndFlush(route);
+        return route;
     }
 
-    private String generateRouteName(Trip trip){
+    /**
+     * Uprade Trip.Route_id on new saved Route
+     *
+     *If you wont save route From Trip this is final method!
+     * @param trip
+     * @throws RouteAlreadyExistException
+     */
+    public void saveRouteFromTripWithUpdateTrip(Trip trip) throws RouteAlreadyExistException {
+        tripService.updateRouteIdInTrip(trip,saveRouteFromTrip(trip));
+    }
+
+    private String generateRouteName(Trip trip) {
         return trip.getName().concat(" by " + trip.getUser().getNickName());
     }
 
-    private Boolean checkAlreadyExistRoutFromTrip(Trip trip){
-        if(!routeRepository.findAllByName(generateRouteName(trip)).isEmpty()){
+    private Boolean checkAlreadyExistRoutFromTrip(Trip trip) {
+        if (!routeRepository.findAllByName(generateRouteName(trip)).isEmpty()) {
             return true;
         }
-        if(trip.getRoute() != null){
+        if (trip.getRoute() != null) {
             return true;
         }
         return false;

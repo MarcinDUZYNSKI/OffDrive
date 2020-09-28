@@ -10,6 +10,7 @@ import java.util.List;
 @Transactional
 public interface RouteRepository extends JpaRepository <Route, Long> {
 
+
     List<Route> findAllByNameLike(String nameSentence);
 
     List<Route> findAllByUserId(long id);
