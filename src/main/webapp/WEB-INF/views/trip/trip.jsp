@@ -27,9 +27,9 @@
         <div class="border-dashed view-height">
             <div class="container w-100">
                 Save Your Trip <br>
-                <form:form modelAttribute="tripWithTripCondition" method="post">
-                    <form:hidden path="trip.id"/>
-                    <form:hidden path="tripCondition.id"/>
+                <form:form modelAttribute="trip" method="post">
+                    <form:hidden path="id"/>
+<%--                    <form:hidden path="tripCondition.id"/>--%>
                     <table>
                         <tr>
                             <th>Trip Parameter:</th>
@@ -37,26 +37,26 @@
                         </tr>
                         <tr>
                             <td>Name:</td>
-                            <td><form:input path="trip.name"/></td>
-                            <form:errors path="trip.name" cssClass="error"/>
+                            <td><form:input path="name"/></td>
+                            <form:errors path="name" cssClass="error"/>
                         </tr>
                         <tr>
                             <td>Time:</td>
-                            <td><form:input path="trip.tripTime"/></td>
-                            <form:errors path="trip.tripTime" cssClass="error"/>
+                            <td><form:input path="tripTime"/></td>
+                            <form:errors path="tripTime" cssClass="error"/>
                         </tr>
                         <tr>
                             <td>Length:</td>
-                            <td><form:input path="trip.length"/></td>
-                            <form:errors path="trip.length" cssClass="error"/>
+                            <td><form:input path="length"/></td>
+                            <form:errors path="length" cssClass="error"/>
                         </tr>
                         <tr>
                             <td>Delta of Altitude:</td>
-                            <td><form:input path="trip.tripAltitude"/></td>
+                            <td><form:input path="tripAltitude"/></td>
                         </tr>
                         <tr>
                             <td>Description:</td>
-                            <td><form:input path="trip.description"/></td>
+                            <td><form:input path="description"/></td>
                         </tr>
                     </table>
 

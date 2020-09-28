@@ -1,4 +1,4 @@
-package pl.pojechali.offdrive.security;
+package pl.pojechali.offdrive.exception;
 
 public class UserAlreadyExistException extends Exception {
 

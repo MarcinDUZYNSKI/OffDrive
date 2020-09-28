@@ -28,7 +28,7 @@ public class User {
     private long id;
     @NotBlank(message = "Please provide an email")
     @Email(message = "Please provide a valid Email")
-    @Column(unique = true)
+    @Column(unique = true) // zabezpieczyć długości 
 //    @UniqueElements //to działa na kolekci tu trzeba stworzyć włąsny walidator
     private String email;
     @NotBlank(message = "Please provide first name")

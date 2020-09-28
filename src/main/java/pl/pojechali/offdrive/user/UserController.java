@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import pl.pojechali.offdrive.security.UserAlreadyExistException;
+import pl.pojechali.offdrive.exception.UserAlreadyExistException;
 
 @Controller
 @RequiredArgsConstructor

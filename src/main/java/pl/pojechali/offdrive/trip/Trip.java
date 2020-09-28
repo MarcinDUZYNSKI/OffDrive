@@ -33,19 +33,19 @@ public class Trip {
     private LocalTime createdTime;
     private LocalDateTime tripDate;
     @NotNull(message = "Please provide trip time")
-    private int tripTime;
+    private Integer tripTime;
     @NotNull(message = "Please provide trip length")
-    private int length;
-    private int tripAltitude;
+    private Integer length;
+    private Integer tripAltitude;
     @Column(columnDefinition = "text", length = 3000)
     private String description;
     @ManyToOne
     private User user;
     @ManyToOne
     private Route route;
-    @OneToOne(mappedBy = "trip")   //jeden Trip posiada jedne warunki (nie posiada wiele warónków)  dlaczego do tabeli tripCondition nie zapoisuję się ID tripów???
+    @OneToOne(mappedBy = "trip", cascade = CascadeType.ALL)   //jeden Trip posiada jedne warunki (nie posiada wiele warónków)  dlaczego do tabeli tripCondition nie zapoisuję się ID tripów???
     private TripCondition tripCondition;
-    @OneToOne(mappedBy = "trip")   // jeden trip posiada jedenCarAttribiute bo jedzie tylko jeden sanochód na jednej wyciczce
+    @OneToOne(mappedBy = "trip", cascade = CascadeType.ALL)   // jeden trip posiada jedenCarAttribiute bo jedzie tylko jeden sanochód na jednej wyciczce
     private CarAttribute carAttribute;
 
 }

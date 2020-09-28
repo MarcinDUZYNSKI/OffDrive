@@ -5,7 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.pojechali.offdrive.security.UserAlreadyExistException;
+import pl.pojechali.offdrive.exception.UserAlreadyExistException;
 import pl.pojechali.offdrive.user.role.Role;
 import pl.pojechali.offdrive.user.role.RoleRepository;
 

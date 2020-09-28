@@ -26,9 +26,12 @@ Insert user data:<br>
     <label>Nick name (visible for other users): <form:input path="nickName" maxlength="50" size="25"/><br>
         <form:errors path="nickName" cssClass="error"/>
     </label><br>
-    <label>Password: <form:input path="password" size="25" maxlength="50"/><br>
+    <label>Password: <form:password path="password" size="25" maxlength="50"/><br>
         <form:errors path="password" cssClass="error"/>
     </label><br>
+<%--    <label>Password: <form:password path="password" size="25" maxlength="50"/><br>    dodać obsługę w backende walidajc powturzenie passworda  --%>
+<%--        <form:errors path="password" cssClass="error"/>--%>
+<%--    </label><br>--%>
 
     <label><input type="submit" value="Submit"></label>
 </form:form>

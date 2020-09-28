@@ -17,17 +17,17 @@ public class TripController {
 
     @RequestMapping(value = {"/index/trip"}, method = RequestMethod.GET)
     public String createTrip(Model model){
-        model.addAttribute("tripWithTripCondition", new TripWithTripCondition()); // czy to nie jest błąd ???? Zrobione żeby w formularzu było jedno wyślij
+        model.addAttribute("trip", new Trip());
         return "trip/trip";
 
     }
     @RequestMapping(value = {"/index/trip"}, method = RequestMethod.POST)
-    public String saveTrip(@Valid TripWithTripCondition tripWithTripCondition, BindingResult result){
+    public String saveTrip(@Valid Trip trip, BindingResult result){
         if (result.hasErrors()){
             return "trip/trip";
-        }
-        tripService.saveTrip(tripWithTripCondition.getTrip());
-        tripService.saveTripCondition(tripWithTripCondition.getTripCondition());
+        }  // podpiąć się pod errory w springu zeby ąłdnie obsłużyć -> java.lang.NumberFormatException
+        trip.getTripCondition().setTrip(trip);
+        tripService.saveTrip(trip);
         return "redirect:/index";
 
     }
@@ -43,25 +43,40 @@ public class TripController {
         if (trip == null){
             return "admin/403";
         }
-        TripWithTripCondition tripWithTripCondition = new TripWithTripCondition();
-        tripWithTripCondition.setTrip(trip);
-        tripWithTripCondition.setTripCondition(tripService.findTripConditionByTripId(id));
-        model.addAttribute("tripWithTripCondition", tripWithTripCondition);
+//        TripWithTripCondition tripWithTripCondition = new TripWithTripCondition();
+//        tripWithTripCondition.setTrip(trip);
+//        tripWithTripCondition.setTripCondition(tripService.findTripConditionByTripId(id));
+        model.addAttribute("trip", tripService.findTripById(id));
         return "trip/trip";
 
     }
-    @RequestMapping(value = {"/index/editTrip/{trip.id}/{tripCondition.id}"}, method = RequestMethod.POST) // nie działa method Post not suported
-    public String saveEditTrip(@Valid TripWithTripCondition tripWithTripCondition, BindingResult result, long tripId, long tripConditionId){
-        if (tripId != tripWithTripCondition.getTrip().getId() || tripConditionId != tripWithTripCondition.getTripCondition().getId()){
+    @RequestMapping(value = {"/index/editTrip/{id}"}, method = RequestMethod.POST)
+    public String saveEditTrip(@Valid Trip trip, BindingResult result, long id){
+        if (id != trip.getId()){
             return "admin/403";
         }
         if (result.hasErrors()){
             return "trip/trip";
         }
-        tripService.updateTrip(tripWithTripCondition.getTrip());
-        tripService.saveTripCondition(tripWithTripCondition.getTripCondition());
+        //load trip
+        //zmienic to co user user moze zmienic
+        // ew zwalidować zmiany
+        tripService.updateTrip(trip);
         return "redirect:/index";
 
     }
+//    @RequestMapping(value = {"/index/editTrip/{trip.id}/{tripCondition.id}"}, method = RequestMethod.POST) // nie działa method Post not suported
+//    public String saveEditTrip(@Valid TripWithTripCondition tripWithTripCondition, BindingResult result, long tripId, long tripConditionId){
+//        if (tripId != tripWithTripCondition.getTrip().getId() || tripConditionId != tripWithTripCondition.getTripCondition().getId()){
+//            return "admin/403";
+//        }
+//        if (result.hasErrors()){
+//            return "trip/trip";
+//        }
+//        tripService.updateTrip(tripWithTripCondition.getTrip());
+//        tripService.saveTripCondition(tripWithTripCondition.getTripCondition());
+//        return "redirect:/index";
+//
+//    }
 
 }

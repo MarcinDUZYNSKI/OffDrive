@@ -21,11 +21,11 @@ public class TripCondition {
     private String mainGround;
     private String waterLevel;
     private String mud;
-    private boolean waterCrossing;
+    private Boolean waterCrossing;
     private String weather;
-    private boolean useWinch;
-    private boolean useSandLadder;
-    private int temperature;
+    private Boolean useWinch;
+    private Boolean useSandLadder;
+    private Integer temperature;
     @OneToOne
     private Trip trip;
 

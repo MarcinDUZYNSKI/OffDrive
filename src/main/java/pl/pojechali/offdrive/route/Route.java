@@ -28,7 +28,7 @@ public class Route {
     @NotBlank
     private String name;
     @NotNull
-    private int length;
+    private Integer length;
     // przez ciekawość jaka tu powinna być prawidłowa adnitacja  dla validacji ???
     private LocalDateTime publicDate;
     private LocalDate cratedDate;
@@ -36,8 +36,8 @@ public class Route {
     //https://github.com/jenetics/jpx    biblioteka do tras
 //    private GPX rout;
 //    @NotNull
-    private int routeAltitude;
-    private int tripCount;
+    private Integer routeAltitude;
+//    private Integer tripCount;  // do usunięcia
     @Column(columnDefinition = "text", length = 3000) // jak zrobić żeby to pole w banie miało tą długość???
     private String description;
     @ManyToOne

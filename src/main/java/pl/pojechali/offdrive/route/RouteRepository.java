@@ -13,4 +13,6 @@ public interface RouteRepository extends JpaRepository <Route, Long> {
     List<Route> findAllByNameLike(String nameSentence);
 
     List<Route> findAllByUserId(long id);
+
+    List<Route> findAllByName(String routeName);
 }

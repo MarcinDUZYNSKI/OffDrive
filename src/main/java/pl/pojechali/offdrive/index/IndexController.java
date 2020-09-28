@@ -6,10 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pl.pojechali.offdrive.exception.RouteAlreadyExistException;
 import pl.pojechali.offdrive.route.RouteServiceImpl;
 import pl.pojechali.offdrive.trip.TripServiceImp;
-
-import java.util.DuplicateFormatFlagsException;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,12 +25,12 @@ public class IndexController {
     public String saveRoute(@PathVariable long id) { // trzeba dorobić zabezpieczenie żeby nie można było stworzyć ponownie Route z już stworzonego Tripa
 //        if (tripService.getTripRepository().findById(id) == null) {  // tu jest zły warunek do weryfikacji możliwego błędu
 //            return "error";
-//        }
+//        }  // to przenieść do servisów żęby walidacja była przprowadzana na poziomie servisu dla pużniejszego resta
         try {
-        routeService.saveRouteFromTrip(tripService.findTripById(id));
-    }catch (DuplicateFormatFlagsException dffe){
+            routeService.saveRouteFromTrip(tripService.findTripById(id));
+        } catch (RouteAlreadyExistException dffe) {
             dffe.printStackTrace();
-            return "redirect:/home"; // do poprawienie przekierowanie przy zapisie już istniejącego route
+            return "redirect:/403"; // do poprawienie przekierowanie przy zapisie już istniejącego route
         }
 //        return "/index/index";  // czemu po zawołaniu górnego adresu return nie przenosi dalej tylko adres w przeglądarce zostaje z żądania?? Oraz wyświetla się bez GET-a
         return "redirect:/index";
