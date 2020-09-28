@@ -25,8 +25,8 @@
 <section class="dashboard-section">
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">
-            <div class="container w-50">
-                Share Yours Trip <br>
+            <div class="container w-100">
+                Save Your Trip <br>
                 <form:form modelAttribute="tripWithTripCondition" method="post">
                     <form:hidden path="trip.id"/>
                     <form:hidden path="tripCondition.id"/>
@@ -36,26 +36,26 @@
                             <th>Input Your Trip</th>
                         </tr>
                         <tr>
-                            <td>Trip name:</td>
+                            <td>Name:</td>
                             <td><form:input path="trip.name"/></td>
                             <form:errors path="trip.name" cssClass="error"/>
                         </tr>
                         <tr>
-                            <td>Trip time:</td>
+                            <td>Time:</td>
                             <td><form:input path="trip.tripTime"/></td>
                             <form:errors path="trip.tripTime" cssClass="error"/>
                         </tr>
                         <tr>
-                            <td>Trip length:</td>
+                            <td>Length:</td>
                             <td><form:input path="trip.length"/></td>
                             <form:errors path="trip.length" cssClass="error"/>
                         </tr>
                         <tr>
-                            <td>Trip delta of Altitude:</td>
+                            <td>Delta of Altitude:</td>
                             <td><form:input path="trip.tripAltitude"/></td>
                         </tr>
                         <tr>
-                            <td>Trip description:</td>
+                            <td>Description:</td>
                             <td><form:input path="trip.description"/></td>
                         </tr>
                     </table>
@@ -78,27 +78,27 @@
                             <td><form:input path="tripCondition.waterLevel"/></td>
                         </tr>
                         <tr>
-                            <td>If there wos mud:</td>
+                            <td>Any mud:</td>
                             <td><form:input path="tripCondition.mud"/></td>
                         </tr>
                         <tr>
-                            <td>If wos water crossing:</td>
+                            <td>Any water crossing:</td>
                             <td><form:select path="tripCondition.waterCrossing"/></td>
                         </tr>
                         <tr>
-                            <td>Description weather condition:</td>
+                            <td>Weather condition:</td>
                             <td><form:input path="tripCondition.weather"/></td>
                         </tr>
                         <tr>
-                            <td>What was the temperature:</td>
+                            <td>Temperature:</td>
                             <td><form:select path="tripCondition.temperature"/></td>
                         </tr>
                         <tr>
-                            <td>Do You used winch:</td>
+                            <td>Did You use winch:</td>
                             <td><form:select path="tripCondition.useWinch"/></td>
                         </tr>
                         <tr>
-                            <td>Do You used Sand Ladder:</td>
+                            <td>Did You use Sand Ladder:</td>
                             <td><form:select path="tripCondition.useSandLadder"/></td>
                         </tr>
                     </table>
