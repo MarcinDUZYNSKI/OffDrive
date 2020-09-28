@@ -7,11 +7,9 @@ import pl.pojechali.offdrive.tripCondition.TripConditionsRepository;
 import pl.pojechali.offdrive.user.UserServiceImpl;
 
 import javax.transaction.Transactional;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
 
 @Data
