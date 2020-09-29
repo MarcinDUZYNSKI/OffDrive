@@ -48,12 +48,24 @@ public class TripServiceImp implements TripService {
 
     @Override
     public void updateTrip(Trip trip) {
-        tripRepository.save(trip);
+        if (trip == null) {
+            throw new NullPointerException(" Trip is Null");
+        }
+        Trip tripToUpdate = tripRepository.findById(trip.getId()).get();
+        tripToUpdate.setName(trip.getName());
+        tripToUpdate.setTripTime(trip.getTripTime());
+        tripToUpdate.setLength(trip.getLength());
+        tripToUpdate.setTripAltitude(trip.getTripAltitude());
+        tripToUpdate.setDescription(trip.getDescription());
+        trip.getTripCondition().setId(tripToUpdate.getTripCondition().getId());
+        trip.getTripCondition().setTrip(tripToUpdate.getTripCondition().getTrip());
+        tripToUpdate.setTripCondition(trip.getTripCondition());
+        tripRepository.save(tripToUpdate);
     }
 
     @Override
     public TripCondition findTripConditionByTripId(long id) {
-       return tripConditionsRepository.findByTripId(id);
+        return tripConditionsRepository.findByTripId(id);
     }
 
     public Trip findTripById(long id) {
@@ -62,13 +74,13 @@ public class TripServiceImp implements TripService {
     }
 
     public void updateRouteIdInTrip(Trip trip, Route route) throws RouteAlreadyExistException {
-        if (trip==null){
-            throw new NullPointerException (" Trip is Null");
+        if (trip == null) {
+            throw new NullPointerException(" Trip is Null");
         }
         Trip tripToUpdate = tripRepository.findById(trip.getId()).get();
-        if (tripToUpdate.getRoute()!= null){
-            throw new RouteAlreadyExistException( " Route wos already create from this Trip");
-        }else {
+        if (tripToUpdate.getRoute() != null) {
+            throw new RouteAlreadyExistException(" Route wos already create from this Trip");
+        } else {
             tripToUpdate.setRoute(route);
         }
         tripRepository.save(trip);

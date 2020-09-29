@@ -35,7 +35,7 @@ public class RouteServiceImpl implements RouteService {
             throw new RouteAlreadyExistException(" Route already exist! Can't save the same. ");
         }
         Route route = new Route();
-        List<Trip> tripList = new ArrayList<>();
+        List<Trip> tripList = new ArrayList<>(); // doda parametry date i time
         tripList.add(trip);
         route.setLength(trip.getLength());
         route.setPublicDate(LocalDateTime.now());
