@@ -41,7 +41,7 @@ public class OffdriveApplication {
       freeMarkerConfigurer.setTemplateLoaderPath("/WEB-INF/mail/templates");
       Configuration configuration = freeMarkerConfigurer.createConfiguration();
 
-      Template mailTemplate = configuration.getTemplate("test-mail.html");
+      Template mailTemplate = configuration.getTemplate("test-mail.ftlh");
       Map<String, Object> model = new HashMap<>();
       model.put("username", "joeSmith");
       model.put("today", LocalDate.now());

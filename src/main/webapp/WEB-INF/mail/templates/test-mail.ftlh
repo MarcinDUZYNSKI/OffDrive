@@ -6,6 +6,10 @@
 </head>
 <body>
 <h1>Welcome ${nickname}, my dear friend</h1>
-
+<ul>
+  <#list orders as order>
+  <li>${order}</li>
+  <#list>
+</ul>
 </body>
 </html>
