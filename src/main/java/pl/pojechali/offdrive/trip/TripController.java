@@ -65,6 +65,29 @@ public class TripController {
         return "redirect:/index";
 
     }
+
+    @RequestMapping(value = {"/index/deleteTrip/{id}"}, method = RequestMethod.GET)
+    public String deleteTrip(@PathVariable long id, Model model){
+        Trip trip = tripService.findTripById(id);
+        if (trip == null){
+            return "admin/403";
+        }
+        model.addAttribute("trip", tripService.findTripById(id));
+        return "trip/deleteConfirm";
+
+    }
+    @RequestMapping(value = {"/index/deleteTripConfirm/{id}"}, method = RequestMethod.GET)
+    public String deleteTripConfirm(@PathVariable long id){
+        Trip trip = tripService.findTripById(id);
+        if (trip == null){
+            return "admin/403";
+        }
+        tripService.deleteTripForUser(trip);
+        return "redirect:/index";
+
+    }
+
+
 //    @RequestMapping(value = {"/index/editTrip/{trip.id}/{tripCondition.id}"}, method = RequestMethod.POST) // nie działa method Post not suported
 //    public String saveEditTrip(@Valid TripWithTripCondition tripWithTripCondition, BindingResult result, long tripId, long tripConditionId){
 //        if (tripId != tripWithTripCondition.getTrip().getId() || tripConditionId != tripWithTripCondition.getTripCondition().getId()){

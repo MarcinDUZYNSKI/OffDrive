@@ -18,33 +18,38 @@
 </head>
 <body>
 
-        <div>
-            <h3>All Your Trips</h3><br>
-            <table>
-                <tr>
-                    <th>Trip Data</th>
-                    <th>Trip Name</th>
-                    <th>Length</th>
-                    <th>Time</th>
-                    <th>Create Route from Trip</th>
-                </tr>
-                <c:forEach items="${allUserTrips}" var="trip">
-                    <tr>
-                            <%--&lt;%&ndash;                        <td><fmt:formatDate value="${trip.tripDate}" pattern="yyyy-MM-dd HH:mm"/> </td>  &ndash;%&gt;  ta metoda wyświetlała błedy, ze taka conwersja jest niemożliwa--%>
-                        <td>${trip.createdDate}</td>
-                        <td>${trip.name}</td>
-                        <td>${trip.length}</td>
-                        <td>${trip.tripTime}</td>
-                        <td>
-                            <a href="/index/createRoute/${trip.id}">Create</a>
-                        </td>
-                        <td>
-                            <a href="/index/editTrip/${trip.id}">Edit</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </div>
+<div>
+    <h3>All Your Trips</h3><br>
+    <table>
+        <tr>
+            <th>Trip Data</th>
+            <th>Trip Name</th>
+            <th>Length</th>
+            <th>Time</th>
+            <th>Create Route from Trip</th>
+            <th>Edit Trip</th>
+            <th>Delete Trip</th>
+        </tr>
+        <c:forEach items="${allUserTrips}" var="trip">
+            <tr>
+                    <%--&lt;%&ndash;                        <td><fmt:formatDate value="${trip.tripDate}" pattern="yyyy-MM-dd HH:mm"/> </td>  &ndash;%&gt;  ta metoda wyświetlała błedy, ze taka conwersja jest niemożliwa--%>
+                <td>${trip.createdDate}</td>
+                <td>${trip.name}</td>
+                <td>${trip.length}</td>
+                <td>${trip.tripTime}</td>
+                <td>
+                    <a href="/index/createRoute/${trip.id}">Create</a>
+                </td>
+                <td>
+                    <a href="/index/editTrip/${trip.id}">Edit</a>
+                </td>
+                <td>
+                    <a href="/index/deleteTrip/${trip.id}">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
 
 </body>
 </html>

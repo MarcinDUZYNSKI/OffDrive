@@ -39,6 +39,11 @@ class TripServiceTest {
             public TripCondition findTripConditionByTripId(long id) {
                 return null;
             }
+
+            @Override
+            public void deleteTripForUser(Trip trip) {
+
+            }
         };
     }
 

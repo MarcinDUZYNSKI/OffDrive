@@ -68,6 +68,12 @@ public class TripServiceImp implements TripService {
         return tripConditionsRepository.findByTripId(id);
     }
 
+    @Override
+    public void deleteTripForUser(Trip trip) {
+        trip.setUser(null);
+        tripRepository.save(trip);
+    }
+
     public Trip findTripById(long id) {
         return tripRepository.findById(id).get();
 

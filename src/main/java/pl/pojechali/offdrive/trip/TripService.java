@@ -11,5 +11,6 @@ public interface TripService {
     List<Trip> findUserTripList();
     void updateTrip(Trip trip);
     TripCondition findTripConditionByTripId(long id);
+    void deleteTripForUser(Trip trip);
 
 }
