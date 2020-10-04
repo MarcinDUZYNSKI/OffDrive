@@ -8,7 +8,9 @@ import pl.pojechali.offdrive.trip.TripServiceImp;
 import pl.pojechali.offdrive.user.UserServiceImpl;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class RouteServiceImpl implements RouteService {
     /**
      * save Route from exist Trip
      * sprawdzenie czy route juz istnieje po nazwie i wpisie w trip.route_id
+     *
      * @param trip
      * @return
      */
@@ -37,6 +40,8 @@ public class RouteServiceImpl implements RouteService {
         Route route = new Route();
         List<Trip> tripList = new ArrayList<>(); // doda parametry date i time
         tripList.add(trip);
+        route.setCratedDate(LocalDate.now());
+        route.setCreatedTime(LocalTime.now());
         route.setLength(trip.getLength());
         route.setPublicDate(LocalDateTime.now());
         route.setName(generateRouteName(trip));
@@ -50,13 +55,14 @@ public class RouteServiceImpl implements RouteService {
 
     /**
      * Uprade Trip.Route_id on new saved Route
+     * <p>
+     * If you wont save route From Trip this is final method!
      *
-     *If you wont save route From Trip this is final method!
      * @param trip
      * @throws RouteAlreadyExistException
      */
     public void saveRouteFromTripWithUpdateTrip(Trip trip) throws RouteAlreadyExistException {
-        tripService.updateRouteIdInTrip(trip,saveRouteFromTrip(trip));
+        tripService.updateRouteIdInTrip(trip, saveRouteFromTrip(trip));
     }
 
     private String generateRouteName(Trip trip) {
@@ -80,7 +86,8 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public List<Route> findRoutesByName(String name) {
-        return routeRepository.findAllByNameLike(name);
+
+        return routeRepository.findAllByNameContains(name);
     }
 
     @Override
@@ -95,7 +102,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public List<Route> findRouteListByUserId(long id) {
-        return routeRepository.findAllByUserId(id);
+    public List<Route> findRouteListByUser(String name) {
+        return routeRepository.findAllByUserId(userService.findUserByNickname(name));
     }
 }

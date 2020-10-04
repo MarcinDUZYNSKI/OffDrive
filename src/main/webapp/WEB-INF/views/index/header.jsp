@@ -6,7 +6,7 @@
                 <ul>
                     <li class="active"><a href="/home">Homepage</a></li>
                     <li><a href="/index/trip">Create Trip</a></li>
-                    <li><a href="/home">Find Route</a></li>
+                    <li><a href="/index/routes">Find Route</a></li>
                     <li><a href="/index/user_trips">See Your Trips</a></li>
                     <li><a href="/perform_logout">Logout</a></li>
                 </ul>

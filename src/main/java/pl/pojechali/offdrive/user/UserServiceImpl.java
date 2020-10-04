@@ -38,6 +38,12 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public long findUserByNickname(String nickName) {
+        long id = userRepository.findUserByNickNameContains(nickName);
+        return id;
+    }
+
     public boolean checkIfUserExist(String email) {
         return userRepository.findUserByEmail(email) != null ? true : false;
     }

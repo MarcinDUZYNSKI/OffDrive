@@ -9,4 +9,6 @@ import javax.transaction.Transactional;
 @Transactional // czy to jest na pewno dobry import
 public interface UserRepository extends JpaRepository<User, Long> {
     User findUserByEmail(String email);
+
+    long findUserByNickNameContains(String nickName);
 }
