@@ -19,11 +19,6 @@
           crossorigin="anonymous">
 </head>
 <body>
-
-<%--<p>--%>
-<%--    <a href="findRoute.jsp">Find Route by Name </a>--%>
-<%--    --%>
-<%--</p>--%>
 <div>
     <h2>Find Route By Name</h2>
     <form method="get">
@@ -41,18 +36,6 @@
         <label><input type="submit" value="Find"></label>
     </select>
     </form>
-    name="userName"
-<%--    <form:form method="get" name="userName">--%>
-<%--        <c:forEach items="${userMap}" var="userMap">--%>
-<%--            <option value="${userMap.key}"> ${userMap.value}</option>--%>
-<%--        </c:forEach>--%>
-<%--        <label><input type="submit" value="Find" id="userName"/></label>--%>
-<%--    </form:form>--%>
-
-<%--    <form method="get">--%>
-<%--        <input type="text" name="userName">--%>
-<%--        <label><input type="submit" value="Find"></label>--%>
-<%--    </form>--%>
 </div>
 
 <c:if test="${routeList != null}">

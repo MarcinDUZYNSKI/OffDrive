@@ -8,7 +8,6 @@ import pl.pojechali.offdrive.trip.TripServiceImp;
 import pl.pojechali.offdrive.user.User;
 import pl.pojechali.offdrive.user.UserServiceImpl;
 
-import javax.persistence.NonUniqueResultException;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -101,31 +100,76 @@ public class RouteServiceImpl implements RouteService {
         return routeRepository.findAllByUserId(userService.getCurrentLoginUser().getId());
 
     }
+
+    /**  to trzeba refaktorować do user service
+     * Obecnie nie urzywany fragment kodu
+     * return HashMap all users
+     * key = user.id
+     * value = user.nickName
+     * @return
+     */
     public Map<Long, String> findAllIdNickNameMap(){
         return userService.findAllIdNickNameMap();
     }
 
-    @Override
-    public List<Route> findRouteListByUserId(Long id) {
-        return routeRepository.findAllByUserId(id);
+    /**
+     *
+     * @return HashMap users who has route
+     *      * key = user.id
+     *      * value = user.nickName
+     */
+    public Map<Long, String> findAllIdNickNameMapWithRouts(){
+        Map<Long, String> findAllIdNickNameMapFromRoute = new HashMap<>();
+        for (Long l :  getUniqueUserIdWhoHasRoute()) {
+            findAllIdNickNameMapFromRoute.put(l, userService.findUserById(l).getNickName());
+        }
+        return findAllIdNickNameMapFromRoute;
     }
 
+    /**
+     *
+     * @return HashSet of User.id
+     * user.id is on Set only one time
+     */
+    private HashSet<Long> getUniqueUserIdWhoHasRoute() {
+        List<Route> routeList = routeRepository.findAll();
+        HashSet<Long> userIdFromRoute = new HashSet<>();
+        for (Route r : routeList) {
+            userIdFromRoute.add(r.getUser().getId());
+        }
+        return userIdFromRoute;
+    }
+
+    /**
+     *
+     * @param id
+     * @return list Routs of user who's get Id
+     * method return empty list when will be error
+     */
+    @Override
+    public List<Route> findRouteListByUserId(Long id) {
+        if (id != null){
+            return routeRepository.findAllByUserId(id);
+        }else {
+            return new ArrayList<>();
+        }
+    }
 
     @Override
     public List<Route> findRouteListByUser(String name) {
-        Map<Long, String> map = userService.findUserByNickname(name);
-        if (map.size()<=1) {
-            return routeRepository.findAllByUserId(getKey(map,name));
+        if (name != null) {
+            User userByEmail = userService.findUserByEmail(name);
+            return routeRepository.findAllByUserId(userByEmail.getId());
+        }else {
+            return new ArrayList<>();
         }
-
-        return null;
     }
-
-    public static <K, V> K getKey(Map<K, V> map, V value) {
-        return map.entrySet()
-                .stream()
-                .filter(entry -> value.equals(entry.getValue()))
-                .map(Map.Entry::getKey)
-                .findFirst().get();
-    }
+//
+//    public static <K, V> K getKey(Map<K, V> map, V value) {
+//        return map.entrySet()
+//                .stream()
+//                .filter(entry -> value.equals(entry.getValue()))
+//                .map(Map.Entry::getKey)
+//                .findFirst().get();
+//    }
 }

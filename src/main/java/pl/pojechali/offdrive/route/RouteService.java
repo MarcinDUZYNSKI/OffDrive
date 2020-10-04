@@ -11,7 +11,7 @@ public interface RouteService {
     List<Route> findRoutesByName(String name); // wyszukaj trasy po liście
     List<Route> findRoutesByCoordinates(); //wyszukaj route po współrzędnych
     List<Route> findUserRouteList(); // wyszukaj wszystkie route aktywnego user
-    List<Route> findRouteListByUser(String name); // wszystkie route wskazanego user
-    List<Route> findRouteListByUserId(Long id); // wszystkie route wskazanego user
+    List<Route> findRouteListByUser(String name); // wszystkie route wskazanego user po emailu
+    List<Route> findRouteListByUserId(Long id); // wszystkie route wskazanego user po jego Id
 
 }

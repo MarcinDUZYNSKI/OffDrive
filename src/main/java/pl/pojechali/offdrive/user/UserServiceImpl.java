@@ -47,7 +47,12 @@ public class UserServiceImpl implements UserService {
         return userMap;
     }
 
-    public Map<Long, String> findAllIdNickNameMap(){
+    @Override
+    public User findUserById(Long l) {
+        return userRepository.findUserById(l);
+    }
+
+    public Map<Long, String> findAllIdNickNameMap() {
         return userRepository.findAllIdNickNameMap();
     }
 

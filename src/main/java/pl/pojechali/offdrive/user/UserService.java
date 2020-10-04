@@ -10,4 +10,6 @@ public interface UserService {
     void saveUser(User user) throws UserAlreadyExistException;
 
     Map<Long, String> findUserByNickname(String nickName);
+
+    User findUserById(Long l);
 }

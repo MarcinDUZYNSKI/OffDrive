@@ -12,10 +12,6 @@ import java.util.Map;
 public class RouteController {
     private final RouteServiceImpl routeService;
 
-//        @RequestMapping(value = "/index/routes")
-//    public String findRoute(){
-//        return "route/findRoute";
-//    }
 
 //    @RequestMapping(value = "/index/routes", method = RequestMethod.GET)
 //    public String findAllUserRoads(Model model){
@@ -31,7 +27,7 @@ public class RouteController {
 
     @ModelAttribute("userMap")
     public Map<Long, String> userMap() {
-            return routeService.findAllIdNickNameMap();
+            return routeService.findAllIdNickNameMapWithRouts();
     }
 
     @RequestMapping(value = "/index/routes", method = RequestMethod.GET) //model atribute

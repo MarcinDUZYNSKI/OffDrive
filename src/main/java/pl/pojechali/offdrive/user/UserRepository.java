@@ -9,14 +9,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Repository
-@Transactional // czy to jest na pewno dobry import
+@Transactional
 public interface UserRepository extends JpaRepository<User, Long> {
     User findUserByEmail(String email);
 
     Set<User> findUserByNickNameContains(String nickName);
 
-    //    List<User> findAllNickName();
     default Map<Long, String> findAllIdNickNameMap() {
         return findAll().stream().collect(Collectors.toMap(User::getId, User::getNickName));
     }
+
+    User findUserById(Long l);
 }
