@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(of = "id")
 public class GpxFile {
     public static final String TABLE = "gpx_file";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

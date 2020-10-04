@@ -33,7 +33,7 @@ public class Route {
     private LocalDateTime publicDate;
     private LocalDate cratedDate;
     private LocalTime createdTime;
-    //https://github.com/jenetics/jpx    biblioteka do tras
+    //https://github.com/jenetics/jpx    biblioteka do tras   rozwojowo do wykorzystania i połączenia z GpxFile
 //    private GPX rout;
 //    @NotNull
     private Integer routeAltitude;
