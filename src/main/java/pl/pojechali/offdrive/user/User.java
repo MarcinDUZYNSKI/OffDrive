@@ -4,6 +4,7 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import pl.pojechali.offdrive.DbFile.GpxFile;
 import pl.pojechali.offdrive.route.Route;
 import pl.pojechali.offdrive.trip.Trip;
 import pl.pojechali.offdrive.user.role.Role;
@@ -28,7 +29,7 @@ public class User {
     private long id;
     @NotBlank(message = "Please provide an email")
     @Email(message = "Please provide a valid Email")
-    @Column(unique = true) // zabezpieczyć długości 
+    @Column(unique = true) // zabezpieczyć długości
 //    @UniqueElements //to działa na kolekci tu trzeba stworzyć włąsny walidator
     private String email;
     @NotBlank(message = "Please provide first name")
@@ -52,4 +53,6 @@ public class User {
     private Set<Role> roles;
     private int enabled;
 
+    @OneToMany(mappedBy = "user")
+    protected Set<GpxFile> gpxFile;
 }
