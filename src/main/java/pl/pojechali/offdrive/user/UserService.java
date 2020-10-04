@@ -2,9 +2,12 @@ package pl.pojechali.offdrive.user;
 
 import pl.pojechali.offdrive.exception.UserAlreadyExistException;
 
+import java.util.Map;
+
 public interface UserService {
     User findUserByEmail(String email);
+
     void saveUser(User user) throws UserAlreadyExistException;
 
-    long findUserByNickname(String nickName);
+    Map<Long, String> findUserByNickname(String nickName);
 }

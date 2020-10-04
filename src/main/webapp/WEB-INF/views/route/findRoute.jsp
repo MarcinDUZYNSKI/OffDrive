@@ -34,9 +34,25 @@
 <div>
     <h2>Find Route By User Name</h2>
     <form method="get">
-        <input type="text" name="userName">
+    <select name="userName" >
+        <c:forEach items="${userMap}" var="entry">
+            <option  value="${entry.key}">${entry.value}</option>
+        </c:forEach>
         <label><input type="submit" value="Find"></label>
+    </select>
     </form>
+    name="userName"
+<%--    <form:form method="get" name="userName">--%>
+<%--        <c:forEach items="${userMap}" var="userMap">--%>
+<%--            <option value="${userMap.key}"> ${userMap.value}</option>--%>
+<%--        </c:forEach>--%>
+<%--        <label><input type="submit" value="Find" id="userName"/></label>--%>
+<%--    </form:form>--%>
+
+<%--    <form method="get">--%>
+<%--        <input type="text" name="userName">--%>
+<%--        <label><input type="submit" value="Find"></label>--%>
+<%--    </form>--%>
 </div>
 
 <c:if test="${routeList != null}">

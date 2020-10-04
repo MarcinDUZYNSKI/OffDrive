@@ -1,20 +1,21 @@
 package pl.pojechali.offdrive.route;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
 public class RouteController {
     private final RouteServiceImpl routeService;
 
-        @RequestMapping(value = "/index/routes")
-    public String findRoute(){
-        return "route/findRoute";
-    }
+//        @RequestMapping(value = "/index/routes")
+//    public String findRoute(){
+//        return "route/findRoute";
+//    }
 
 //    @RequestMapping(value = "/index/routes", method = RequestMethod.GET)
 //    public String findAllUserRoads(Model model){
@@ -28,9 +29,19 @@ public class RouteController {
         return "route/findRoute";
     }
 
+    @ModelAttribute("userMap")
+    public Map<Long, String> userMap() {
+            return routeService.findAllIdNickNameMap();
+    }
+
+    @RequestMapping(value = "/index/routes", method = RequestMethod.GET) //model atribute
+    public String showFindRoute(Model model){
+        return "route/findRoute";
+    }
+
     @RequestMapping(value = {"/index/routes"}, method = RequestMethod.GET, params = "userName")
-    public String findRouteByUserName(@RequestParam String userName, Model model){
-        model.addAttribute("routeList", routeService.findRouteListByUser(userName));
+    public String findRouteByUserName(@RequestParam(name = "userName") long id, Model model){
+        model.addAttribute("routeList", routeService.findRouteListByUserId(id));
         return "route/findRoute";
     }
 

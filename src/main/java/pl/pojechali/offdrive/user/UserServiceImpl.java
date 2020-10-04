@@ -11,8 +11,7 @@ import pl.pojechali.offdrive.user.role.RoleRepository;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.*;
 
 @Service
 @Transactional
@@ -39,9 +38,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public long findUserByNickname(String nickName) {
-        long id = userRepository.findUserByNickNameContains(nickName);
-        return id;
+    public Map<Long, String> findUserByNickname(String nickName) {
+        Set<User> userSet = userRepository.findUserByNickNameContains(nickName);
+        Map<Long, String> userMap = new HashMap<>();
+        for (User u : userSet) {
+            userMap.put(u.getId(), u.getNickName());
+        }
+        return userMap;
+    }
+
+    public Map<Long, String> findAllIdNickNameMap(){
+        return userRepository.findAllIdNickNameMap();
     }
 
     public boolean checkIfUserExist(String email) {

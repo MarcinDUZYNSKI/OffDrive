@@ -5,14 +5,15 @@ import org.springframework.stereotype.Service;
 import pl.pojechali.offdrive.exception.RouteAlreadyExistException;
 import pl.pojechali.offdrive.trip.Trip;
 import pl.pojechali.offdrive.trip.TripServiceImp;
+import pl.pojechali.offdrive.user.User;
 import pl.pojechali.offdrive.user.UserServiceImpl;
 
+import javax.persistence.NonUniqueResultException;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Data
 @Service
@@ -100,9 +101,31 @@ public class RouteServiceImpl implements RouteService {
         return routeRepository.findAllByUserId(userService.getCurrentLoginUser().getId());
 
     }
+    public Map<Long, String> findAllIdNickNameMap(){
+        return userService.findAllIdNickNameMap();
+    }
+
+    @Override
+    public List<Route> findRouteListByUserId(Long id) {
+        return routeRepository.findAllByUserId(id);
+    }
+
 
     @Override
     public List<Route> findRouteListByUser(String name) {
-        return routeRepository.findAllByUserId(userService.findUserByNickname(name));
+        Map<Long, String> map = userService.findUserByNickname(name);
+        if (map.size()<=1) {
+            return routeRepository.findAllByUserId(getKey(map,name));
+        }
+
+        return null;
+    }
+
+    public static <K, V> K getKey(Map<K, V> map, V value) {
+        return map.entrySet()
+                .stream()
+                .filter(entry -> value.equals(entry.getValue()))
+                .map(Map.Entry::getKey)
+                .findFirst().get();
     }
 }
