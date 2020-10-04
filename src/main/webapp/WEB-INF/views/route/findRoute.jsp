@@ -41,7 +41,7 @@
 <c:if test="${routeList != null}">
 <div>
     <h3>All Your Routes</h3><br>
-    <table>
+    <table cellpadding="3px" cellspacing="10px">
         <tr>
             <th>Route created Data</th>
             <th>Route Name</th>
@@ -49,8 +49,9 @@
             <th>Delta altitude</th>
             <th>Description</th>
             <th>Create Trip from Route</th>
-            <th>Edit Route</th>
-            <th>Delete Route</th>
+
+<%--            <th>Edit Route</th>--%>
+<%--            <th>Delete Route</th>--%>
         </tr>
         <c:forEach items="${routeList}" var="route">
             <tr>
@@ -60,15 +61,18 @@
                 <td>${route.length}</td>
                 <td>${route.routeAltitude}</td>
                 <td>${route.description}</td>
+
                 <td>
                     <a href="/index/createTrip/${route.id}">Create</a>
                 </td>
+                        <c:if test="${route.user.id==currentUser}">
                 <td>
                     <a href="/index/editRoute/${route.id}">Edit</a>
                 </td>
                 <td>
                     <a href="/index/deleteRoute/${route.id}">Delete</a>
                 </td>
+                        </c:if>
             </tr>
         </c:forEach>
     </table>

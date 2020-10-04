@@ -164,6 +164,9 @@ public class RouteServiceImpl implements RouteService {
             return new ArrayList<>();
         }
     }
+    public long getCurrentLoginUserId(){
+        return userService.getCurrentLoginUser().getId();
+    }
 //
 //    public static <K, V> K getKey(Map<K, V> map, V value) {
 //        return map.entrySet()

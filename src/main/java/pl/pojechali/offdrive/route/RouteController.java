@@ -29,6 +29,10 @@ public class RouteController {
     public Map<Long, String> userMap() {
             return routeService.findAllIdNickNameMapWithRouts();
     }
+    @ModelAttribute("currentUser")
+    public Long currentLoginUserId() {
+        return routeService.getCurrentLoginUserId();
+    }
 
     @RequestMapping(value = "/index/routes", method = RequestMethod.GET) //model atribute
     public String showFindRoute(Model model){
