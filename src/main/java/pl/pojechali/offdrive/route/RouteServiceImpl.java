@@ -22,7 +22,7 @@ public class RouteServiceImpl implements RouteService {
     private final RouteRepository routeRepository;
     private final UserServiceImpl userService;
 
-    public Trip saveTripFromRoute(Long id){
+    public Trip saveTripFromRoute(Long id) {
         if (id == null) {
             throw new NullPointerException(" Can't created Trip -> Route is null ");
         }
@@ -103,9 +103,9 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public List<Route> findRoutesByName(String name) {
-
         return routeRepository.findAllByNameContains(name);
     }
+
 
     @Override
     public List<Route> findRoutesByCoordinates() {
@@ -118,33 +118,33 @@ public class RouteServiceImpl implements RouteService {
 
     }
 
-    /**  to trzeba refaktorować do user service
+    /**
+     * to trzeba refaktorować do user service
      * Obecnie nie urzywany fragment kodu
      * return HashMap all users
      * key = user.id
      * value = user.nickName
+     *
      * @return
      */
-    public Map<Long, String> findAllIdNickNameMap(){
+    public Map<Long, String> findAllIdNickNameMap() {
         return userService.findAllIdNickNameMap();
     }
 
     /**
-     *
      * @return HashMap users who has route
-     *      * key = user.id
-     *      * value = user.nickName
+     * * key = user.id
+     * * value = user.nickName
      */
-    public Map<Long, String> findAllIdNickNameMapWithRouts(){
+    public Map<Long, String> findAllIdNickNameMapWithRouts() {
         Map<Long, String> findAllIdNickNameMapFromRoute = new HashMap<>();
-        for (Long l :  getUniqueUserIdWhoHasRoute()) {
+        for (Long l : getUniqueUserIdWhoHasRoute()) {
             findAllIdNickNameMapFromRoute.put(l, userService.findUserById(l).getNickName());
         }
         return findAllIdNickNameMapFromRoute;
     }
 
     /**
-     *
      * @return HashSet of User.id
      * user.id is on Set only one time
      */
@@ -158,18 +158,48 @@ public class RouteServiceImpl implements RouteService {
     }
 
     /**
-     *
      * @param id
      * @return list Routs of user who's get Id
      * method return empty list when will be error
      */
     @Override
     public List<Route> findRouteListByUserId(Long id) {
-        if (id != null){
+        if (id != null) {
             return routeRepository.findAllByUserId(id);
-        }else {
+        } else {
             return new ArrayList<>();
         }
+    }
+
+    @Override
+    public Route findRouteById(Long id) {
+        if (id != null) {
+            return routeRepository.findById(id).get();
+        } else {
+            throw new NullPointerException(" can't find Route by null ");
+        }
+
+    }
+
+    @Override
+    public void updateRoute(Route route) {
+        if (route == null) {
+            throw new NullPointerException(" Route to update is null ");
+        }
+        Route routeToUpdate = routeRepository.findById(route.getId()).orElseThrow(NullPointerException::new); // do konsultacji sposób obsługo
+        routeToUpdate.setName(route.getName());
+        routeToUpdate.setLength(route.getLength());
+        routeToUpdate.setRouteAltitude(route.getRouteAltitude());
+        routeToUpdate.setDescription(route.getDescription());
+        routeRepository.save(routeToUpdate);
+    }
+
+    @Override
+    public void deleteRouteForUser(Route route) {
+        if (route ==null){
+            throw new NullPointerException(" Route to delete is null ");
+        }
+        routeRepository.delete(route); // do analizy biznesowej możliwość pozostawienia w bazie route
     }
 
     @Override
@@ -177,11 +207,12 @@ public class RouteServiceImpl implements RouteService {
         if (name != null) {
             User userByEmail = userService.findUserByEmail(name);
             return routeRepository.findAllByUserId(userByEmail.getId());
-        }else {
+        } else {
             return new ArrayList<>();
         }
     }
-    public long getCurrentLoginUserId(){
+
+    public long getCurrentLoginUserId() {
         return userService.getCurrentLoginUser().getId();
     }
 //

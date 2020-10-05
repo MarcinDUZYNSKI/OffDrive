@@ -46,7 +46,7 @@ public class TripController {
 //        TripWithTripCondition tripWithTripCondition = new TripWithTripCondition();
 //        tripWithTripCondition.setTrip(trip);
 //        tripWithTripCondition.setTripCondition(tripService.findTripConditionByTripId(id));
-        model.addAttribute("trip", tripService.findTripById(id));
+        model.addAttribute("trip", trip);
         return "trip/trip";
 
     }
@@ -72,7 +72,7 @@ public class TripController {
         if (trip == null){
             return "admin/403";
         }
-        model.addAttribute("trip", tripService.findTripById(id));
+        model.addAttribute("trip", trip);
         return "trip/deleteConfirm";
 
     }

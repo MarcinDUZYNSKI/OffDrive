@@ -1,5 +1,4 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -27,34 +26,34 @@
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">
             <div class="container w-100">
-
-                <h1>Rely wont delete Yours
-                    <c:if test="${trip != null}">
-                   Trip: <br> ${trip.name}
-                    </c:if>
-                    <c:if test="${route != null}">
-                   Route: <br> ${route.name}
-                    </c:if>
-                </h1><br>
-
-              <button>
-                <c:if test="${trip != null}">
-                    <a href="/index/deleteTripConfirm/${trip.id}">YES</a>
-                </c:if>
-                <c:if test="${route != null}">
-                    <a href="/index/deleteRouteConfirm/${route.id}">YES</a>
-                </c:if>
-                </button>
-                <button>
-                <c:if test="${trip != null}">
-                   <a href="/index/user_trips">NO</a>
-                </c:if>
-                <c:if test="${route != null}">
-                    <a href="/index">NO</a>
-                </c:if>
-                </button>
-
-
+                <br>
+                <form:form modelAttribute="route" method="post">
+                    <form:hidden path="id"/>
+                    <table>
+                        <tr>
+                            <th>Edit Yours Route:</th>
+                        </tr>
+                        <tr>
+                            <td>Name:</td>
+                            <td><form:input path="name"/></td>
+                            <form:errors path="name" cssClass="error"/>
+                        </tr>
+                        <tr>
+                            <td>Length:</td>
+                            <td><form:input path="length"/></td>
+                            <form:errors path="length" cssClass="error"/>
+                        </tr>
+                        <tr>
+                            <td>Delta of Altitude:</td>
+                            <td><form:input path="routeAltitude"/></td>
+                        </tr>
+                        <tr>
+                            <td>Description:</td>
+                            <td><form:input path="description"/></td>
+                        </tr>
+                    </table>
+                    <label><input type="submit" value="Save Route"></label>
+                </form:form>
             </div>
         </div>
     </div>

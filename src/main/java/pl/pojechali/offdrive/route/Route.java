@@ -29,7 +29,7 @@ public class Route {
     private String name;
     @NotNull
     private Integer length;
-    // przez ciekawość jaka tu powinna być prawidłowa adnitacja  dla validacji ???
+    // przez ciekawość jaka tu powinna być prawidłowa adnotacja  dla validacji ???
     private LocalDateTime publicDate;
     private LocalDate cratedDate;
     private LocalTime createdTime;

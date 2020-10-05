@@ -51,7 +51,7 @@ public class TripServiceImp implements TripService {
         if (trip == null) {
             throw new NullPointerException(" Trip is Null");
         }
-        Trip tripToUpdate = tripRepository.findById(trip.getId()).get();
+        Trip tripToUpdate = tripRepository.findById(trip.getId()).orElseThrow(NullPointerException::new); // do konsultacji sposób obsługi
         tripToUpdate.setName(trip.getName());
         tripToUpdate.setTripTime(trip.getTripTime());
         tripToUpdate.setLength(trip.getLength());
@@ -79,7 +79,7 @@ public class TripServiceImp implements TripService {
     }
 
     public Trip findTripById(long id) {
-        return tripRepository.findById(id).get();
+        return tripRepository.findById(id).orElseThrow(NullPointerException::new); // do weryfikacji
 
     }
 
@@ -87,7 +87,7 @@ public class TripServiceImp implements TripService {
         if (trip == null) {
             throw new NullPointerException(" Trip is Null");
         }
-        Trip tripToUpdate = tripRepository.findById(trip.getId()).get();
+        Trip tripToUpdate = tripRepository.findById(trip.getId()).get();// znowu optional
         if (tripToUpdate.getRoute() != null) {
             throw new RouteAlreadyExistException(" Route wos already create from this Trip");
         } else {

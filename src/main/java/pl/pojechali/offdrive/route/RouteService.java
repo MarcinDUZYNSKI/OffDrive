@@ -13,5 +13,9 @@ public interface RouteService {
     List<Route> findUserRouteList(); // wyszukaj wszystkie route aktywnego user
     List<Route> findRouteListByUser(String name); // wszystkie route wskazanego user po emailu
     List<Route> findRouteListByUserId(Long id); // wszystkie route wskazanego user po jego Id
+    Route findRouteById(Long id);
+    void updateRoute(Route route);
+
+    void deleteRouteForUser(Route route);
 
 }
