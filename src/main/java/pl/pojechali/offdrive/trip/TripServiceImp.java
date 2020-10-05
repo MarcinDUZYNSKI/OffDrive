@@ -57,6 +57,10 @@ public class TripServiceImp implements TripService {
         tripToUpdate.setLength(trip.getLength());
         tripToUpdate.setTripAltitude(trip.getTripAltitude());
         tripToUpdate.setDescription(trip.getDescription());
+        if (tripToUpdate.getTripCondition() == null) { // Trip created from Route don't have TripCondition
+            tripToUpdate.setTripCondition(new TripCondition());
+            tripToUpdate.getTripCondition().setTrip(trip);
+        }
         trip.getTripCondition().setId(tripToUpdate.getTripCondition().getId());
         trip.getTripCondition().setTrip(tripToUpdate.getTripCondition().getTrip());
         tripToUpdate.setTripCondition(trip.getTripCondition());

@@ -44,6 +44,13 @@ public class RouteController {
         model.addAttribute("routeList", routeService.findRouteListByUserId(id));
         return "route/findRoute";
     }
+    @RequestMapping(value = "/index/createTrip/{id}", method = RequestMethod.GET)
+    public String saveTripFomRoute(@PathVariable long id){
+        routeService.saveTripFromRoute(id);
+        return "redirect:/index/user_trips";
+    }
+
+
 
 /*
     @RequestMapping(value = {"/index/editTrip/{id}"}, method = RequestMethod.GET)

@@ -22,6 +22,22 @@ public class RouteServiceImpl implements RouteService {
     private final RouteRepository routeRepository;
     private final UserServiceImpl userService;
 
+    public Trip saveTripFromRoute(Long id){
+        if (id == null) {
+            throw new NullPointerException(" Can't created Trip -> Route is null ");
+        }
+        Route route = routeRepository.findById(id).get(); // tu trzeba jakiegoś ifa dla zabezpieczenia napisać
+        Trip trip = new Trip();
+        trip.setName(route.getName());
+        trip.setLength(route.getLength());
+        trip.setTripAltitude(route.getRouteAltitude());
+        trip.setDescription(route.getDescription());
+        trip.setTripTime(0);
+        trip.setRoute(route);
+        tripService.saveTrip(trip);
+        return trip;
+    }
+
     /**
      * save Route from exist Trip
      * sprawdzenie czy route juz istnieje po nazwie i wpisie w trip.route_id
@@ -32,13 +48,13 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public Route saveRouteFromTrip(Trip trip) throws RouteAlreadyExistException {
         if (trip == null) {
-            throw new NullPointerException(" Can't created Route Trip is null ");
+            throw new NullPointerException(" Can't created Route -> Trip is null ");
         }
         if (checkAlreadyExistRoutFromTrip(trip)) {
             throw new RouteAlreadyExistException(" Route already exist! Can't save the same. ");
         }
         Route route = new Route();
-        List<Trip> tripList = new ArrayList<>(); // doda parametry date i time
+        List<Trip> tripList = new ArrayList<>(); // dodać parametry date i time
         tripList.add(trip);
         route.setCratedDate(LocalDate.now());
         route.setCreatedTime(LocalTime.now());
@@ -66,6 +82,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     private String generateRouteName(Trip trip) {
+
         return trip.getName().concat(" by " + trip.getUser().getNickName());
     }
 
