@@ -14,11 +14,18 @@ import java.util.Map;
 public class RouteController {
     private final RouteServiceImpl routeService;
 
-//    @RequestMapping(value = "/index/routes", method = RequestMethod.GET)
-//    public String findAllUserRoads(Model model){
-//        model.addAttribute("routeList", routeService.findUserRouteList());
-//        return "route/findRoute";
-//    }
+    @RequestMapping(value = "/index/routes", method = RequestMethod.GET, params = "allRoute")
+    public String findAllRoads( Model model){
+        model.addAttribute("routeList", routeService.findAllRouteList());
+        return "route/findRoute";
+        //@RequestParam(name = "allRoute")Integer par,
+    }
+    @RequestMapping(value = "/index/routes", method = RequestMethod.GET, params = "allMyRoute")
+    public String findAllCurrentLoginUserRoads( Model model){
+        model.addAttribute("routeList", routeService.findRouteListByUserId(currentLoginUserId()));
+        return "route/findRoute";
+//        @RequestParam(name = "allMyRoute")Integer par,
+    }
 
     @RequestMapping(value = {"/index/routes"}, method = RequestMethod.GET, params = "routeName")
     public String findRouteByName(@RequestParam String routeName, Model model) {
@@ -85,13 +92,15 @@ public class RouteController {
         return "trip/deleteConfirm";
     }
 
+    //`t_trip`, CONSTRAINT FOREIGN KEY (`route_id`) REFERENCES `t_route` (`id`))
+    // nie można usunąć trasy które na trip bo tam siedzi ID
     @RequestMapping(value = {"/index/deleteRouteConfirm/{id}"}, method = RequestMethod.GET)
     public String deleteRouteConfirm(@PathVariable long id){
         Route route = routeService.findRouteById(id);
         if (route == null){
             return "admin/403";
         }
-        routeService.deleteRouteForUser(route);
+        routeService.deleteRoute(route);
         return "redirect:/index";
 
     }

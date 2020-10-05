@@ -15,7 +15,6 @@ public interface RouteService {
     List<Route> findRouteListByUserId(Long id); // wszystkie route wskazanego user po jego Id
     Route findRouteById(Long id);
     void updateRoute(Route route);
-
-    void deleteRouteForUser(Route route);
-
+    void deleteRoute(Route route);
+    List<Route> findAllRouteList();
 }

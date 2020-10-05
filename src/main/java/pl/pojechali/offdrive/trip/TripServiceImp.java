@@ -95,5 +95,9 @@ public class TripServiceImp implements TripService {
         }
         tripRepository.save(trip);
     }
+
+    public void updateRouteIdInTripForRouteDelete(Route route) {
+        tripRepository.updateRouteIdForNull(route.getId());
+    }
 }
 

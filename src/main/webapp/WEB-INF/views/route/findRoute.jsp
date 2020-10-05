@@ -20,6 +20,20 @@
 </head>
 <body>
 <div>
+    <h2>View All Routes</h2>
+    <form method="get">
+        <input type="hidden" name="allRoute">
+           <input type="submit" value="Find">
+    </form>
+</div>
+<div>
+    <h2>View My Routes</h2>
+    <form method="get">
+        <input type="hidden" name="allMyRoute">
+       <input type="submit" value="Find">
+    </form>
+</div>
+<div>
     <h2>Find Route By Name</h2>
     <form method="get">
         <input type="text" name="routeName">
@@ -40,7 +54,7 @@
 
 <c:if test="${routeList != null}">
 <div>
-    <h3>All Your Routes</h3><br>
+    <h3>Selected Routes</h3><br>
     <table cellpadding="3px" cellspacing="10px">
         <tr>
             <th>Route created Data</th>

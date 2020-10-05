@@ -195,11 +195,17 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public void deleteRouteForUser(Route route) {
+    public void deleteRoute(Route route) {
         if (route ==null){
             throw new NullPointerException(" Route to delete is null ");
         }
+        tripService.updateRouteIdInTripForRouteDelete(route);
         routeRepository.delete(route); // do analizy biznesowej możliwość pozostawienia w bazie route
+    }
+
+    @Override
+    public List<Route> findAllRouteList() {
+        return routeRepository.findAll();
     }
 
     @Override
