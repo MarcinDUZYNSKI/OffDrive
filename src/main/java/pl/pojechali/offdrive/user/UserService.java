@@ -12,4 +12,6 @@ public interface UserService {
     Map<Long, String> findUserByNickname(String nickName);
 
     User findUserById(Long l);
+
+    void updateUser(User user) throws UserAlreadyExistException;
 }

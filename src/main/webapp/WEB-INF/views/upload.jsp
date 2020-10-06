@@ -5,14 +5,17 @@
     <title>Upload GpxFile</title>
 </head>
 <body>
+
 <form method="post" enctype="multipart/form-data">
-    <label for="addFile">Dodaj plik:
+    <label for="addFile">Add file:
         <input type="file" name="file" id="addFile">
         <%--        accept="application/xml,gpx"
+        "application/vnd.openstreetmap.data+xml"
+        "application/vnd.google-earth.kmz"
          accept="application/vnd.google-earth.kml+xml"
          --%>
     </label>
-    <label>Nazwa do zapisania pliku:
+    <label>Name of file to save:
         <input type="text" name="fileName"/>
     </label>
 

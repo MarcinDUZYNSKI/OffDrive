@@ -21,6 +21,7 @@ public class IndexController {
         return "index";
     }
 
+
     @RequestMapping(value = {"/index/createRoute/{id}"})
     public String saveRoute(@PathVariable long id) { // trzeba dorobić zabezpieczenie żeby nie można było stworzyć ponownie Route z już stworzonego Tripa
 //        if (tripService.getTripRepository().findById(id) == null) {  // tu jest zły warunek do weryfikacji możliwego błędu

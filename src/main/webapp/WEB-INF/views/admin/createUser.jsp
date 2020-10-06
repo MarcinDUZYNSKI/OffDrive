@@ -24,7 +24,7 @@
 <body>
 Insert user data:<br>
 <form:form modelAttribute="user" method="post">
-
+<form:hidden path="id" />
     <label>Email: <form:input path="email" maxlength="75" size="25"/><br>
         <form:errors path="email" cssClass="error"/>
     </label><br>

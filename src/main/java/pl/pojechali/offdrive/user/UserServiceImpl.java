@@ -52,12 +52,29 @@ public class UserServiceImpl implements UserService {
         return userRepository.findUserById(l);
     }
 
+    @Override
+    public void updateUser(User user) throws UserAlreadyExistException {
+        User userToUpdate = userRepository.findUserById(user.getId());
+        if (userToUpdate==null){
+            throw new NoSuchElementException(" user doesn't exist! can't Update ");
+        }
+        if (checkIfUserExist(user.getEmail())){
+            throw new UserAlreadyExistException();
+        }
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setPassword(passwordEncoder.encode(user.getPassword()));
+        userToUpdate.setEmail(user.getEmail());
+        userToUpdate.setNickName(user.getNickName());
+        userRepository.save(userToUpdate);
+    }
+
     public Map<Long, String> findAllIdNickNameMap() {
         return userRepository.findAllIdNickNameMap();
     }
 
     public boolean checkIfUserExist(String email) {
-        return userRepository.findUserByEmail(email) != null ? true : false;
+        return userRepository.findUserByEmail(email) != null;
     }
 
     public User getCurrentLoginUser() {

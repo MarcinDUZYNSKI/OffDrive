@@ -20,6 +20,47 @@
             color: red;
         }
     </style>
+
+<%--    ------------------------------------------------------------------------------------------------------------%>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="../../../js/loadgpx.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+
+        function loadGPXFileIntoGoogleMap(map, filename) {
+            $.ajax({url: filename,
+                dataType: "xml",
+                success: function(data) {
+                    var parser = new GPXParser(data, map);
+                    parser.setTrackColour("#ff0000");     // Set the track line colour
+                    parser.setTrackWidth(5);          // Set the track line width
+                    parser.setMinTrackPointDelta(0.001);      // Set the minimum distance between track points
+                    parser.centerAndZoom(data);
+                    parser.addTrackpointsToMap();         // Add the trackpoints
+                    parser.addRoutepointsToMap();         // Add the routepoints
+                    parser.addWaypointsToMap();           // Add the waypoints
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            var mapOptions = {
+                zoom: 8,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            let map = new google.maps.Map(document.getElementById("map"),
+                mapOptions);
+            loadGPXFileIntoGoogleMap(map, "trip.xml");
+        });
+
+        //]]>
+    </script>
+
+<%--    ------------------------------------------------------------------------------------------------------------------%>
+
 </head>
 <body>
 <section class="dashboard-section">
@@ -102,11 +143,45 @@
                             <td><form:select path="tripCondition.useSandLadder"/></td>
                         </tr>
                     </table>
+
+
+
                     <label><input type="submit" value="Save Trip"></label>
                 </form:form>
+            </div>
+            <div>
+                <h4>Upload file with Yous trip</h4><br>
+                Accept format GPX KML KMZ TCX CRS LOC
+                <%@ include file="../upload.jsp" %> // to chyba nie odnosisię do upload controlera???
+
+                <%--                        <form method="post" enctype="multipart/form-data">--%>
+                <%--                            <label for="addFile">Add file:--%>
+                <%--                                <input type="file" name="file" id="addFile">--%>
+                <%--                                    &lt;%&ndash;        accept="application/xml,gpx"--%>
+                <%--                                    "application/vnd.openstreetmap.data+xml"--%>
+                <%--                                    "application/vnd.google-earth.kmz"--%>
+                <%--                                     accept="application/vnd.google-earth.kml+xml"--%>
+                <%--                                     &ndash;%&gt;--%>
+                <%--                            </label>--%>
+                <%--                            <label>Name of file to save:--%>
+                <%--                                <input type="text" name="fileName"/>--%>
+                <%--                            </label>--%>
+
+                <%--                            <button type="submit">Upload File</button>--%>
+                <%--                        </form>--%>
             </div>
         </div>
     </div>
 </section>
+
+<%-----------------------------------------------------------------------------------------------------------------%>
+<%--<section>--%>
+
+
+<%--                <div id="map" id="trip" style="width: 50%; height: 50%;"></div>--%>
+
+<%--</section>--%>
+
+
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import pl.pojechali.offdrive.exception.UserAlreadyExistException;
+import pl.pojechali.offdrive.trip.Trip;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,6 +33,29 @@ public class UserController {
             return "admin/createUser";
         }
             return "admin/login";
+    }
+
+    @RequestMapping(value = {"/index/editUser"}, method = RequestMethod.GET)
+    public String editUser(@PathVariable long id, Model model){
+        User user = userService.getCurrentLoginUser();
+//                findUserById(id);
+        if (user == null){
+            return "admin/403";
+        }
+        model.addAttribute("user", user);
+        return "admin/createUser";
+
+    }
+    @RequestMapping(value = {"/index/editUser/{id}"}, method = RequestMethod.POST)
+    public String saveEditUser(@Valid User user, BindingResult result, long id) throws UserAlreadyExistException {
+        if (id != user.getId()){
+            return "admin/403";
+        }
+        if (result.hasErrors()){
+            return "admin/createUser";
+        }
+        userService.updateUser(user);
+        return "redirect:/index";
 
     }
 
