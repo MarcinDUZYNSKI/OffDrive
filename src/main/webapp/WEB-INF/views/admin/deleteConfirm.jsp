@@ -26,34 +26,9 @@
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">
             <div class="container w-100">
-
-                <h1>Are you sure You want to delete:  ${trip.name}</h1><br>
-                    <c:if test="${trip != null}">
-                   Trip: <br> ${trip.name}
-                    </c:if>
-                    <c:if test="${route != null}">
-                   Route: <br> ${route.name}
-                    </c:if>
-                </h1><br>
-
-              <button>
-                <c:if test="${trip != null}">
-                    <a href="/index/deleteTripConfirm/${trip.id}">YES</a>
-                </c:if>
-                <c:if test="${route != null}">
-                    <a href="/index/deleteRouteConfirm/${route.id}">YES</a>
-                </c:if>
-                </button>
-                <button>
-                <c:if test="${trip != null}">
-                   <a href="/index/user_trips">NO</a>
-                </c:if>
-                <c:if test="${route != null}">
-                    <a href="/index">NO</a>
-                </c:if>
-                </button>
-
-
+                <h1>Are you sure You want to delete: ${user.email} user account?</h1><br>
+                <button><a href="/index/deleteUserConfirm">YES</a></button>
+                <button><a href="/index/userProfile">NO</a></button>
             </div>
         </div>
     </div>

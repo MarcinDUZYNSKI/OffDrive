@@ -22,6 +22,8 @@
 <%--    <meta charset="utf-8">--%>
 <%--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">--%>
 <%--    <title>OffDrive</title>--%>
+<%--    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>--%>
+<%--    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>--%>
 <%--    <link rel="stylesheet"--%>
 <%--          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"--%>
 <%--          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"--%>
@@ -43,36 +45,37 @@
 <section class="dashboard-section">
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">
-            <div class="container w-100">
-                <br>
-                <form:form modelAttribute="route" method="post">
-                    <form:hidden path="id"/>
-                    <table>
-                        <tr>
-                            <th>Edit Yours Route:</th>
-                        </tr>
-                        <tr>
-                            <td>Name:</td>
-                            <td><form:input path="name"/></td>
-                            <form:errors path="name" cssClass="error"/>
-                        </tr>
-                        <tr>
-                            <td>Length:</td>
-                            <td><form:input path="length"/></td>
-                            <form:errors path="length" cssClass="error"/>
-                        </tr>
-                        <tr>
-                            <td>Delta of Altitude:</td>
-                            <td><form:input path="routeAltitude"/></td>
-                        </tr>
-                        <tr>
-                            <td>Description:</td>
-                            <td><form:input path="description"/></td>
-                        </tr>
-                    </table>
-                    <label><input type="submit" value="Save Route"></label>
+            <div class="container w-25">
+                User data:<br>
+                <form:form modelAttribute="user" method="post">
+
+                    <label>Email: <form:input path="email" maxlength="75" size="25"/><br>
+                        <form:errors path="email" cssClass="error"/>
+                    </label><br>
+                    <%--    <label>Repet email : <form:input path="email" id="confirmEmail"></label>--%>
+                    <label>First name: <form:input path="firstName" maxlength="50" size="25"/><br>
+                        <form:errors path="firstName" cssClass="error"/>
+                    </label><br>
+                    <label>Last name: <form:input path="lastName" maxlength="50" size="25"/><br>
+                        <form:errors path="lastName" cssClass="error"/>
+                    </label><br>
+                    <label>Nick name (visible for other users): <form:input path="nickName"
+                                                                            maxlength="50"
+                                                                            size="25"/><br>
+                        <form:errors path="nickName" cssClass="error"/>
+                    </label><br>
+
+                    <label>Password: <form:password path="password" size="25" maxlength="50"/><br>
+                        <form:errors path="password" cssClass="error"/>
+                    </label><br>
+                    <%--    <label>Password: <form:password path="password" size="25" maxlength="50"/><br>    dodać obsługę w backende walidajc powturzenie passworda  --%>
+                    <%--        <form:errors path="password" cssClass="error"/>--%>
+                    <%--    </label><br>--%>
+
+                    <label><input type="submit" value="Submit"></label>
                 </form:form>
             </div>
+
         </div>
     </div>
 </section>
