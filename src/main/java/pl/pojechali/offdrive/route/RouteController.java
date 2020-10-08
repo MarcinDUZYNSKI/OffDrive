@@ -76,7 +76,8 @@ public class RouteController {
         if (id != route.getId()){
             return "admin/403";
         }
-        if (currentLoginUserId()!=route.getUser().getId()){
+//        if (currentLoginUserId()!=route.getUser().getId()){
+        if (currentLoginUserId()!=routeService.findRouteById(route.getId()).getUser().getId()){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
         if (result.hasErrors()){

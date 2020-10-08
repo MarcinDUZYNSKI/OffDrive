@@ -7,6 +7,7 @@ import pl.pojechali.offdrive.route.Route;
 import pl.pojechali.offdrive.route.RouteRepository;
 import pl.pojechali.offdrive.tripCondition.TripCondition;
 import pl.pojechali.offdrive.tripCondition.TripConditionsRepository;
+import pl.pojechali.offdrive.user.User;
 import pl.pojechali.offdrive.user.UserServiceImpl;
 
 import javax.transaction.Transactional;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Data
 @Service
@@ -53,7 +55,10 @@ public class TripServiceImp implements TripService {
         if (trip == null) {
             throw new NullPointerException(" Trip is Null");
         }
-        Trip tripToUpdate = tripRepository.findById(trip.getId()).orElseThrow(NullPointerException::new); // do konsultacji sposób obsługi
+        Trip tripToUpdate = tripRepository.findById(trip.getId()).orElseThrow(NullPointerException::new);
+        if (tripToUpdate.getUser().getId()!=userService.getCurrentLoginUser().getId()){
+            throw new NoSuchElementException(" can't update trip ");
+        }
         tripToUpdate.setName(trip.getName());
         tripToUpdate.setTripTime(trip.getTripTime());
         tripToUpdate.setLength(trip.getLength());
@@ -80,16 +85,20 @@ public class TripServiceImp implements TripService {
         tripRepository.save(trip);
     }
 
+    @Override
+    public User getCurrentLoginUser() {
+        return userService.getCurrentLoginUser();
+    }
+
     public Trip findTripById(long id) {
         return tripRepository.findById(id).orElseThrow(NullPointerException::new); // do weryfikacji
-
     }
 
     public void updateRouteIdInTrip(Trip trip, Route route) throws RouteAlreadyExistException {
         if (trip == null) {
             throw new NullPointerException(" Trip is Null");
         }
-        Trip tripToUpdate = tripRepository.findById(trip.getId()).get();// znowu optional
+        Trip tripToUpdate = tripRepository.findById(trip.getId()).orElseThrow(NullPointerException::new);// znowu optional
         if (tripToUpdate.getRoute() != null) {
             throw new RouteAlreadyExistException(" Route wos already create from this Trip");
         } else {
