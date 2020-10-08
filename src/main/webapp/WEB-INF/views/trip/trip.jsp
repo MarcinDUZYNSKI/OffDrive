@@ -20,19 +20,19 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
           crossorigin="anonymous">
-<%--    <meta charset="utf-8">--%>
-<%--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">--%>
-<%--    <title>OffDrive</title>--%>
-<%--    <link rel="stylesheet"--%>
-<%--          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"--%>
-<%--          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"--%>
-<%--          crossorigin="anonymous">--%>
-<%--    <link href="https://fonts.googleapis.com/css?family=Charmonman:400,700|Open+Sans:400,600,700&amp;subset=latin-ext"--%>
-<%--          rel="stylesheet">--%>
-<%--    <link rel="stylesheet" href="../css/style.css" type="text/css">--%>
-<%--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"--%>
-<%--          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"--%>
-<%--          crossorigin="anonymous">--%>
+    <%--    <meta charset="utf-8">--%>
+    <%--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">--%>
+    <%--    <title>OffDrive</title>--%>
+    <%--    <link rel="stylesheet"--%>
+    <%--          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"--%>
+    <%--          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"--%>
+    <%--          crossorigin="anonymous">--%>
+    <%--    <link href="https://fonts.googleapis.com/css?family=Charmonman:400,700|Open+Sans:400,600,700&amp;subset=latin-ext"--%>
+    <%--          rel="stylesheet">--%>
+    <%--    <link rel="stylesheet" href="../css/style.css" type="text/css">--%>
+    <%--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"--%>
+    <%--          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"--%>
+    <%--          crossorigin="anonymous">--%>
     <style>
         .error {
             color: red;
@@ -86,19 +86,46 @@
                         </tr>
                         <tr>
                             <td>Landscape:</td>
-                            <td><form:input path="tripCondition.landscape"/></td>
+                            <td><form:select path="tripCondition.landscape">
+                                <form:option value="null" label="plesa select"/>
+                                <form:option value="mountain" label="mountain"/>
+                                <form:option value="forest" label="forest"/>
+                                <form:option value="desert" label="desert"/>
+                                <form:option value="riverLake" label="rier & lake"/>
+                                <form:option value="meadow" label="meadow"/>
+                            </form:select></td>
                         </tr>
                         <tr>
                             <td>Ground:</td>
-                            <td><form:input path="tripCondition.mainGround"/></td>
+                            <td><form:select path="tripCondition.mainGround">
+                                <form:option value="null" label="plesa select"/>
+                                <form:option value="rocky" label="rocky"/>
+                                <form:option value="tought" label="tought"/>
+                                <form:option value="mixt" label="mixt"/>
+                                <form:option value="mudy" label="mudy"/>
+                                <form:option value="soft" label="soft"/>
+                                <form:option value="sand" label="sand"/>
+                            </form:select></td>
                         </tr>
                         <tr>
                             <td>Water level:</td>
-                            <td><form:input path="tripCondition.waterLevel"/></td>
+                            <td><form:select path="tripCondition.waterLevel">
+                                <form:option value="null" label="plesa select"/>
+                                <form:option value="dontKnown" label="I don't known"/>
+                                <form:option value="low" label="low"/>
+                                <form:option value="midle" label="midle"/>
+                                <form:option value="high" label="high"/>
+                            </form:select></td>
                         </tr>
                         <tr>
                             <td>Any mud:</td>
-                            <td><form:input path="tripCondition.mud"/></td>
+                            <td><form:select path="tripCondition.mud">
+                                <form:option value="null" label="plesa select"/>
+                                <form:option value="no" label="no"/>
+                                <form:option value="litle" label="a litle"/>
+                                <form:option value="fewe" label="a fewe"/>
+                                <form:option value="much" label="much"/>
+                            </form:select></td>
                         </tr>
                         <tr>
                             <td>Any water crossing:</td>
@@ -110,15 +137,24 @@
                         </tr>
                         <tr>
                             <td>Weather condition:</td>
-                            <td><form:input path="tripCondition.weather"/></td>
+                            <td><form:select path="tripCondition.weather">
+                                <form:option value="null" label="plesa select"/>
+                                <form:option value="sunny" label="sunny"/>
+                                <form:option value="cloudy" label="cloudy"/>
+                                <form:option value="rainy" label="rainy"/>
+                                <form:option value="windy" label="windy"/>
+                            </form:select></td>
                         </tr>
                         <tr>
                             <td>Temperature:</td>
                             <td>
                                 <form:select path="tripCondition.temperature">
-<%--                                    <c:forEach begin="0" end="110" var="index">--%>
-<%--                                    <form:options  items="${index}" label="${index-50}" value="${index-50}"/>--%>
-<%--                                    </c:forEach>--%>
+                                    <c:if test="${trip.tripCondition.temperature==null}">
+                                    <form:option value="null" label="pleas select"/>
+                                    </c:if>
+                                    <c:forEach begin="0" end="110" var="index">
+                                        <form:option items="${index-50}" label="${index-50}" value="${index-50}"/>
+                                    </c:forEach>
                                 </form:select>
                             </td>
                         </tr>
@@ -137,7 +173,6 @@
                             </td>
                         </tr>
                     </table>
-
 
                     <label><input type="submit" value="Save Trip"></label>
                 </form:form>

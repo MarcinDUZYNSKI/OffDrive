@@ -76,7 +76,7 @@
 <%--                            --%>
 <%--                        </c:otherwise>--%>
 <%--                    </c:choose>--%>
-                    <c:if test="${empty user.password}">
+                    <c:if test="${user.password == null}">
                         <label>Password: <form:password path="password" size="25"
                                                         maxlength="50"/><br>
                             <form:errors path="password" cssClass="error"/>

@@ -4,12 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import javax.validation.Valid;
 import pl.pojechali.offdrive.exception.UserAlreadyExistException;
-import pl.pojechali.offdrive.trip.Trip;
+
+import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,35 +21,46 @@ public class UserController {
         model.addAttribute("user", new User());
         return "admin/user_form";
     }
+
     @RequestMapping(value = "/admin/createUser", method = RequestMethod.POST)
-    public String saveUser(@Valid User user, BindingResult result){
-        if (result.hasErrors()){
+    public String saveUser(@Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
             return "admin/user_form";
         }
         try {
             userService.saveUser(user);
         } catch (UserAlreadyExistException e) {
-            result.rejectValue("email", "user.email","An account already exists for this email.");
+            result.rejectValue("email", "user.email", "An account already exists for this email.");
             return "admin/user_form";
         }
-            return "admin/login";
+        return "admin/login";
     }
 
     @RequestMapping(value = {"/index/editUser"}, method = RequestMethod.GET)
-    public String editUser(Model model){
+    public String editUser(Model model) {
         User user = userService.getCurrentLoginUser();
 //                findUserById(id);
-        if (user == null){
+        if (user == null) {
             return "admin/403";
         }
         model.addAttribute("user", user);
         return "admin/user_form";
 
     }
+
     @RequestMapping(value = {"/index/editUser"}, method = RequestMethod.POST)
     public String saveEditUser(@Valid User user, BindingResult result) throws UserAlreadyExistException {
+//        if (user.getPassword() == null) {
+//            user.setPassword("12345678");
+//        }
 
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
+//            if(user.getEmail().equals(userService.findUserByEmail(user.getEmail()))){
+//                result.reject("email");
+//            }
+            if (user.getPassword()==null){
+                result.reject("password");
+            }
             return "admin/user_form";
         }
         userService.updateUser(user);
@@ -79,14 +89,15 @@ public class UserController {
     @RequestMapping(value = "/index/deleteUser", method = RequestMethod.GET)
     public String deleteUser(Model model) {
         User user = userService.getCurrentLoginUser();
-        if(user == null) {
+        if (user == null) {
             return "admin/403";
         }
         model.addAttribute("user", userService.getCurrentLoginUser());
         return "admin/deleteConfirm";
     }
+
     @RequestMapping("/index/userProfile")
-    public String showUserProfile (Model model) {
+    public String showUserProfile(Model model) {
         model.addAttribute("currentUser", userService.getCurrentLoginUser());
         return "admin/user_profile";
     }
