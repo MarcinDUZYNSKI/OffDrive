@@ -1,11 +1,11 @@
-<footer class="footer-section pt-3 pb-3">
+<footer>
     <!-- Footer -->
     <div id="footer">
         <div class="container">
             <section>
                 <header>
                     <h2>Get in touch</h2>
-                    <span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>
+<%--                    <span class="byline">See our profiles</span>--%>
                 </header>
                 <ul class="contact">
                     <li><a target="_blank" href="http://www.facebook.com/pojechalipl"><i
@@ -20,8 +20,7 @@
     <!-- Copyright -->
     <div id="copyright">
         <div class="container">
-            Design: <a href="http://templated.co">TEMPLATED</a> Images: <a
-                href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
+            Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
         </div>
     </div>
 </footer>

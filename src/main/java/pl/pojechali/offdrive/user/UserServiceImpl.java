@@ -74,12 +74,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAllIdNickNameMap();
     }
 
-    public boolean checkIfUserExist(String email) {
-        return userRepository.findUserByEmail(email) != null;
-    }
 // docelowo przenieść do controllera bo ta metoda nie zadziała bez przeglądarki
     public User getCurrentLoginUser() { // TODO rozbiec na dwie części 1 wyciąga ID zalogowanego usera i ta będzie siedzieć w UserUtils statyczna metoda 2 metoda zastaje userSwervice findUserByEmail
-
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
@@ -89,5 +85,14 @@ public class UserServiceImpl implements UserService {
         }
         return (userRepository.findUserByEmail(username));
     }
+    @Override
+  public void deleteUser(User user) {
+      userRepository.delete(user);
+  }
+
+  public boolean checkIfUserExist(String email) {
+    return userRepository.findUserByEmail(email) != null ? true : false;
+  }
+
 }
 

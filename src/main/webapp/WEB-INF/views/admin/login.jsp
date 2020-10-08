@@ -21,7 +21,7 @@
 <section class="dashboard-section">
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">
-            <div class="container w-25">
+            <div class="container w-50">
                 <form class="padding-small text-center" action="/perform_login" method="post">
                     <h1 class="text-color-darker">Login</h1>
                     <div><label> Email: <input type="text" name="username"/> </label></div>

@@ -5,13 +5,16 @@ import pl.pojechali.offdrive.exception.UserAlreadyExistException;
 import java.util.Map;
 
 public interface UserService {
-    User findUserByEmail(String email);
 
-    void saveUser(User user) throws UserAlreadyExistException;
+  User findUserByEmail(String email);
 
-    Map<Long, String> findUserByNickname(String nickName);
+  void saveUser(User user) throws UserAlreadyExistException;
 
-    User findUserById(Long l);
+  Map<Long, String> findUserByNickname(String nickName);
 
-    User updateUser(User user) throws UserAlreadyExistException;
+  User findUserById(Long l);
+
+  User updateUser(User user) throws UserAlreadyExistException;
+
+  void deleteUser(User user);
 }

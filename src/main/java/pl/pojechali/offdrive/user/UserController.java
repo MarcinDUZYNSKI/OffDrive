@@ -19,18 +19,18 @@ public class UserController {
 //    @GetMapping("/admin/createUser")
     public String createUser(Model model) {
         model.addAttribute("user", new User());
-        return "admin/createUser";
+        return "user_form";
     }
-    @PostMapping("/admin/createUser")
+    @RequestMapping(value = "/admin/createUser", method = RequestMethod.POST)
     public String saveUser(@Valid User user, BindingResult result){
         if (result.hasErrors()){
-            return "admin/createUser";
+            return "user_form";
         }
         try {
             userService.saveUser(user);
         } catch (UserAlreadyExistException e) {
             result.rejectValue("email", "user.email","An account already exists for this email.");
-            return "admin/createUser";
+            return "user_form";
         }
             return "admin/login";
     }
@@ -55,6 +55,39 @@ public class UserController {
         userService.updateUser(user);
         return "redirect:/index";
 
+    }
+    @RequestMapping(value = "/index/editUser", method = RequestMethod.GET)
+    public String editUser(Model model) {
+        User user = userService.getCurrentLoginUser();
+        if (user == null){
+            return "admin/403";
+        }
+        model.addAttribute("user", userService.getCurrentLoginUser());
+        return "admin/user_form";
+    }
+
+    @RequestMapping(value = "/index/editUser", method = RequestMethod.POST)
+    public String saveEditUser(@Valid User user, BindingResult result) {
+        if(result.hasErrors()) {
+            return "admin/user_form";
+        }
+        userService.updateUser(user);
+        return "redirect:/index";
+    }
+
+    @RequestMapping(value = "/index/deleteUser", method = RequestMethod.GET)
+    public String deleteUser(Model model) {
+        User user = userService.getCurrentLoginUser();
+        if(user == null) {
+            return "admin/403";
+        }
+        model.addAttribute("user", userService.getCurrentLoginUser());
+        return "admin/deleteConfirm";
+    }
+    @RequestMapping("/index/userProfile")
+    public String showUserProfile (Model model) {
+        model.addAttribute("currentUser", userService.getCurrentLoginUser());
+        return "admin/user_profile";
     }
 
 //    @GetMapping("/admin")

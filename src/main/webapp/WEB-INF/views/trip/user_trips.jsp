@@ -17,7 +17,7 @@
           crossorigin="anonymous">
 </head>
 <body>
-
+<%@ include file="/WEB-INF/views/index/header.jsp" %>
 <div>
     <h3>All Your Trips</h3><br>
     <table>
