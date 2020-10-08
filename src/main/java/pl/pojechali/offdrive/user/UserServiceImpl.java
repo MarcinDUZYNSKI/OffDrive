@@ -18,45 +18,63 @@ import java.util.HashSet;
 @Transactional
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
 
-    public User findUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
-    }
+  private final UserRepository userRepository;
+  private final RoleRepository roleRepository;
+  private final BCryptPasswordEncoder passwordEncoder;
 
-    public void saveUser(User user) throws UserAlreadyExistException {
-        if (checkIfUserExist(user.getEmail())) {
-            throw new UserAlreadyExistException("User already exists for this email");
-        }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEnabled(1);
-        user.setCreationDate(LocalDateTime.now());
-        Role userRole = roleRepository.findByName("ROLE_USER");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-        userRepository.save(user);
-    }
+  public User findUserByEmail(String email) {
+    return userRepository.findUserByEmail(email);
+  }
 
-    @Override
-    public long findUserByNickname(String nickName) {
-        long id = userRepository.findUserByNickNameContains(nickName);
-        return id;
+  public void saveUser(User user) throws UserAlreadyExistException {
+    if (checkIfUserExist(user.getEmail())) {
+      throw new UserAlreadyExistException("User already exists for this email");
     }
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    user.setEnabled(1);
+    user.setCreationDate(LocalDateTime.now());
+    Role userRole = roleRepository.findByName("ROLE_USER");
+    user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+    userRepository.save(user);
+  }
 
-    public boolean checkIfUserExist(String email) {
-        return userRepository.findUserByEmail(email) != null ? true : false;
+  @Override
+  public void updateUser(User user) {
+    if (user == null) {
+    throw new NullPointerException("User doesn't exist");
     }
+    User userToUpdate = userRepository.findUserByEmail(user.getEmail());
+    userToUpdate.setFirstName(user.getFirstName());
+    userToUpdate.setLastName(user.getLastName());
+    userToUpdate.setNickName(user.getNickName());
+    userRepository.save(userToUpdate);
+  }
 
-    public User getCurrentLoginUser() {
-        String username;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails) principal).getUsername();
-        } else {
-            username = principal.toString();
-        }
-        return (userRepository.findUserByEmail(username));
+  @Override
+  public long findUserByNickname(String nickName) {
+    long id = userRepository.findUserByNickNameContains(nickName);
+    return id;
+  }
+
+  @Override
+  public void deleteUser(User user) {
+      userRepository.delete(user);
+  }
+
+  public boolean checkIfUserExist(String email) {
+    return userRepository.findUserByEmail(email) != null ? true : false;
+  }
+
+  public User getCurrentLoginUser() {
+    String username;
+    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    if (principal instanceof UserDetails) {
+      username = ((UserDetails) principal).getUsername();
+    } else {
+      username = principal.toString();
     }
+    return (userRepository.findUserByEmail(username));
+  }
 }
 
