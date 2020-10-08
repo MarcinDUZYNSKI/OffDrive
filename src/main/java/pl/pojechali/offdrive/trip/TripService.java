@@ -2,6 +2,7 @@ package pl.pojechali.offdrive.trip;
 
 
 import pl.pojechali.offdrive.tripCondition.TripCondition;
+import pl.pojechali.offdrive.user.User;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface TripService {
     TripCondition findTripConditionByTripId(long id);
     void deleteTripForUser(Trip trip);
 
+    User getCurrentLoginUser();
 }

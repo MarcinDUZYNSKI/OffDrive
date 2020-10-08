@@ -22,8 +22,6 @@ public class RouteServiceImpl implements RouteService {
     private final RouteRepository routeRepository;
     private final UserServiceImpl userService;
 
-
-
     /**
      * save Route from exist Trip
      * sprawdzenie czy route juz istnieje po nazwie i wpisie w trip.route_id
@@ -68,7 +66,6 @@ public class RouteServiceImpl implements RouteService {
     }
 
     private String generateRouteName(Trip trip) {
-
         return trip.getName().concat(" by " + trip.getUser().getNickName());
     }
 
@@ -76,15 +73,11 @@ public class RouteServiceImpl implements RouteService {
         if (!routeRepository.findAllByName(generateRouteName(trip)).isEmpty()) {
             return true;
         }
-        if (trip.getRoute() != null) {
-            return true;
-        }
-        return false;
+        return trip.getRoute() != null;
     }
 
     @Override
     public void saveRouteFromFile() {
-
     }
 
     @Override
@@ -101,7 +94,6 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public List<Route> findUserRouteList() {
         return routeRepository.findAllByUserId(userService.getCurrentLoginUser().getId());
-
     }
 
     /**
@@ -147,7 +139,7 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public Route findRouteById(Long id) {
         if (id != null) {
-            return routeRepository.findById(id).get();
+            return routeRepository.findById(id).orElseThrow(NullPointerException::new);
         } else {
             throw new NullPointerException(" can't find Route by null ");
         }
@@ -169,11 +161,10 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public void deleteRoute(Route route) {
-        if (route ==null){
+        if (route == null) {
             throw new NullPointerException(" Route to delete is null ");
         }
-        //tripService.updateRouteIdInTripForRouteDelete(route);
-        for(Trip t: route.getTrips()){
+        for (Trip t : route.getTrips()) {
             t.setRoute(null);
         }
         routeRepository.delete(route); // do analizy biznesowej możliwość pozostawienia w bazie route

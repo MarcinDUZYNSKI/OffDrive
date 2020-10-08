@@ -2,6 +2,7 @@ package pl.pojechali.offdrive.trip;
 
 import org.junit.jupiter.api.Test;
 import pl.pojechali.offdrive.tripCondition.TripCondition;
+import pl.pojechali.offdrive.user.User;
 
 import java.util.List;
 
@@ -43,6 +44,11 @@ class TripServiceTest {
             @Override
             public void deleteTripForUser(Trip trip) {
 
+            }
+
+            @Override
+            public User getCurrentLoginUser() {
+                return null;
             }
         };
     }
