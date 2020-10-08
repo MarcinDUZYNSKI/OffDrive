@@ -1,10 +1,12 @@
 package pl.pojechali.offdrive.route;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -54,17 +56,16 @@ public class RouteController {
         return "route/findRoute";
     }
 
-    @RequestMapping(value = "/index/createTrip/{id}", method = RequestMethod.GET)
-    public String saveTripFomRoute(@PathVariable long id) {
-        routeService.saveTripFromRoute(id);
-        return "redirect:/index/user_trips";
-    }
+
 
     @RequestMapping(value = {"/index/editRoute/{id}"}, method = RequestMethod.GET)
     public String editRoute(@PathVariable long id, Model model){
         Route route = routeService.findRouteById(id);
         if (route == null){
             return "admin/403";
+        }
+        if (currentLoginUserId()!=route.getUser().getId()){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
         model.addAttribute("route", route);
         return "route/editRoute";
@@ -74,6 +75,9 @@ public class RouteController {
     public String saveEditTrip(@Valid Route route, BindingResult result, long id){
         if (id != route.getId()){
             return "admin/403";
+        }
+        if (currentLoginUserId()!=route.getUser().getId()){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
         if (result.hasErrors()){
             return "route/editRoute";
@@ -88,17 +92,21 @@ public class RouteController {
         if (route == null){
             return "admin/403";
         }
+        if (currentLoginUserId()!=route.getUser().getId()){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
         model.addAttribute("route", route);
         return "trip/deleteConfirm";
     }
 
-    //`t_trip`, CONSTRAINT FOREIGN KEY (`route_id`) REFERENCES `t_route` (`id`))
-    // nie można usunąć trasy które na trip bo tam siedzi ID
     @RequestMapping(value = {"/index/deleteRouteConfirm/{id}"}, method = RequestMethod.GET)
     public String deleteRouteConfirm(@PathVariable long id){
         Route route = routeService.findRouteById(id);
         if (route == null){
             return "admin/403";
+        }
+        if (currentLoginUserId()!=route.getUser().getId()){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
         routeService.deleteRoute(route);
         return "redirect:/index";

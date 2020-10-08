@@ -21,14 +21,20 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping(value = {"/index/myAccount"}, method = RequestMethod.GET)
+    public String showMyAccount(Model model) {
+        return "admin/userMenu";
+    }
 
-    @RequestMapping(value = {"/index/createRoute/{id}"})
+
+
+    @RequestMapping(value = {"/index/createRoute/{id}"}) //TODO  przenieść do routeController
     public String saveRoute(@PathVariable long id) { // trzeba dorobić zabezpieczenie żeby nie można było stworzyć ponownie Route z już stworzonego Tripa
 //        if (tripService.getTripRepository().findById(id) == null) {  // tu jest zły warunek do weryfikacji możliwego błędu
 //            return "error";
 //        }  // to przenieść do servisów żęby walidacja była przprowadzana na poziomie servisu dla pużniejszego resta
         try {
-            routeService.saveRouteFromTripWithUpdateTrip(tripService.findTripById(id));
+            routeService.createRouteFromTripWithUpdateTrip(tripService.findTripById(id));
         } catch (RouteAlreadyExistException dffe) {
             dffe.printStackTrace();
             return "redirect:/403"; // do poprawienie przekierowanie przy zapisie już istniejącego route

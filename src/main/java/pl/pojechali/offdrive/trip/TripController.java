@@ -21,6 +21,7 @@ public class TripController {
         return "trip/trip";
 
     }
+
     @RequestMapping(value = {"/index/trip"}, method = RequestMethod.POST)
     public String saveTrip(@Valid Trip trip, BindingResult result){
         if (result.hasErrors()){
@@ -35,6 +36,12 @@ public class TripController {
     public String findAllUserTrips(Model model){
         model.addAttribute("allUserTrips", tripService.findUserTripList());
         return "trip/user_trips";
+    }
+
+    @RequestMapping(value = "/index/createTrip/{id}", method = RequestMethod.GET)
+    public String saveTripFomRoute(@PathVariable long id) {
+        tripService.saveTripFromRoute(id);
+        return "redirect:/index/user_trips";
     }
 
     @RequestMapping(value = {"/index/editTrip/{id}"}, method = RequestMethod.GET)

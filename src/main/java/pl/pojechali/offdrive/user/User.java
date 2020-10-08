@@ -37,7 +37,7 @@ public class User {
     @NotBlank(message = "Please provide last name")
     private String lastName;
     @NotBlank(message = "Please provide password")
-    @Size(min = 8, max = 100)
+    @Size(min = 8, max = 100) // servis do walidacji hasłe lista zakazanych haseł
     private String password;
     private String nickName;
     @Column(nullable = false, updatable = false)

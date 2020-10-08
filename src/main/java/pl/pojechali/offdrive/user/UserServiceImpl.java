@@ -53,12 +53,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) throws UserAlreadyExistException {
+    public User updateUser(User user) throws UserAlreadyExistException {
         User userToUpdate = userRepository.findUserById(user.getId());
         if (userToUpdate==null){
             throw new NoSuchElementException(" user doesn't exist! can't Update ");
         }
-        if (checkIfUserExist(user.getEmail())){
+        if (checkIfUserExist(user.getEmail())){// jak user nie zmienił maila TODO jeśli user email equals userToUpdate if wewnętrzny to jest pierwszy if
             throw new UserAlreadyExistException();
         }
         userToUpdate.setLastName(user.getLastName());
@@ -67,6 +67,7 @@ public class UserServiceImpl implements UserService {
         userToUpdate.setEmail(user.getEmail());
         userToUpdate.setNickName(user.getNickName());
         userRepository.save(userToUpdate);
+        return userToUpdate;
     }
 
     public Map<Long, String> findAllIdNickNameMap() {
@@ -76,8 +77,9 @@ public class UserServiceImpl implements UserService {
     public boolean checkIfUserExist(String email) {
         return userRepository.findUserByEmail(email) != null;
     }
+// docelowo przenieść do controllera bo ta metoda nie zadziała bez przeglądarki
+    public User getCurrentLoginUser() { // TODO rozbiec na dwie części 1 wyciąga ID zalogowanego usera i ta będzie siedzieć w UserUtils statyczna metoda 2 metoda zastaje userSwervice findUserByEmail
 
-    public User getCurrentLoginUser() {
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {

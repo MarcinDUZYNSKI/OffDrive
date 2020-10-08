@@ -22,21 +22,7 @@ public class RouteServiceImpl implements RouteService {
     private final RouteRepository routeRepository;
     private final UserServiceImpl userService;
 
-    public Trip saveTripFromRoute(Long id) {
-        if (id == null) {
-            throw new NullPointerException(" Can't created Trip -> Route is null ");
-        }
-        Route route = routeRepository.findById(id).get(); // tu trzeba jakiegoś ifa dla zabezpieczenia napisać
-        Trip trip = new Trip();
-        trip.setName(route.getName());
-        trip.setLength(route.getLength());
-        trip.setTripAltitude(route.getRouteAltitude());
-        trip.setDescription(route.getDescription());
-        trip.setTripTime(0);
-        trip.setRoute(route);
-        tripService.saveTrip(trip);
-        return trip;
-    }
+
 
     /**
      * save Route from exist Trip
@@ -46,7 +32,7 @@ public class RouteServiceImpl implements RouteService {
      * @return
      */
     @Override
-    public Route saveRouteFromTrip(Trip trip) throws RouteAlreadyExistException {
+    public Route createRouteFromTrip(Trip trip) throws RouteAlreadyExistException {
         if (trip == null) {
             throw new NullPointerException(" Can't created Route -> Trip is null ");
         }
@@ -77,8 +63,8 @@ public class RouteServiceImpl implements RouteService {
      * @param trip
      * @throws RouteAlreadyExistException
      */
-    public void saveRouteFromTripWithUpdateTrip(Trip trip) throws RouteAlreadyExistException {
-        tripService.updateRouteIdInTrip(trip, saveRouteFromTrip(trip));
+    public void createRouteFromTripWithUpdateTrip(Trip trip) throws RouteAlreadyExistException {
+        tripService.updateRouteIdInTrip(trip, createRouteFromTrip(trip));
     }
 
     private String generateRouteName(Trip trip) {
@@ -116,19 +102,6 @@ public class RouteServiceImpl implements RouteService {
     public List<Route> findUserRouteList() {
         return routeRepository.findAllByUserId(userService.getCurrentLoginUser().getId());
 
-    }
-
-    /**
-     * to trzeba refaktorować do user service
-     * Obecnie nie urzywany fragment kodu
-     * return HashMap all users
-     * key = user.id
-     * value = user.nickName
-     *
-     * @return
-     */
-    public Map<Long, String> findAllIdNickNameMap() {
-        return userService.findAllIdNickNameMap();
     }
 
     /**
@@ -186,7 +159,7 @@ public class RouteServiceImpl implements RouteService {
         if (route == null) {
             throw new NullPointerException(" Route to update is null ");
         }
-        Route routeToUpdate = routeRepository.findById(route.getId()).orElseThrow(NullPointerException::new); // do konsultacji sposób obsługo
+        Route routeToUpdate = routeRepository.findById(route.getId()).orElseThrow(NullPointerException::new); // TODO lepij włąsny wyjątk notfoundElemnt
         routeToUpdate.setName(route.getName());
         routeToUpdate.setLength(route.getLength());
         routeToUpdate.setRouteAltitude(route.getRouteAltitude());
@@ -199,7 +172,10 @@ public class RouteServiceImpl implements RouteService {
         if (route ==null){
             throw new NullPointerException(" Route to delete is null ");
         }
-        tripService.updateRouteIdInTripForRouteDelete(route);
+        //tripService.updateRouteIdInTripForRouteDelete(route);
+        for(Trip t: route.getTrips()){
+            t.setRoute(null);
+        }
         routeRepository.delete(route); // do analizy biznesowej możliwość pozostawienia w bazie route
     }
 

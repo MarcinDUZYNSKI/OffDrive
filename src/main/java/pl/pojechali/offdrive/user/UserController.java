@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/index/editUser"}, method = RequestMethod.GET)
-    public String editUser(@PathVariable long id, Model model){
+    public String editUser(Model model){
         User user = userService.getCurrentLoginUser();
 //                findUserById(id);
         if (user == null){
@@ -46,11 +46,9 @@ public class UserController {
         return "admin/createUser";
 
     }
-    @RequestMapping(value = {"/index/editUser/{id}"}, method = RequestMethod.POST)
-    public String saveEditUser(@Valid User user, BindingResult result, long id) throws UserAlreadyExistException {
-        if (id != user.getId()){
-            return "admin/403";
-        }
+    @RequestMapping(value = {"/index/editUser"}, method = RequestMethod.POST)
+    public String saveEditUser(@Valid User user, BindingResult result) throws UserAlreadyExistException {
+
         if (result.hasErrors()){
             return "admin/createUser";
         }

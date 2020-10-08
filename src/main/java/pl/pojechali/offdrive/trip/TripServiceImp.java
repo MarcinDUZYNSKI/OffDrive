@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 import pl.pojechali.offdrive.exception.RouteAlreadyExistException;
 import pl.pojechali.offdrive.route.Route;
+import pl.pojechali.offdrive.route.RouteRepository;
 import pl.pojechali.offdrive.tripCondition.TripCondition;
 import pl.pojechali.offdrive.tripCondition.TripConditionsRepository;
 import pl.pojechali.offdrive.user.UserServiceImpl;
@@ -21,6 +22,7 @@ public class TripServiceImp implements TripService {
     private final TripRepository tripRepository;
     private final TripConditionsRepository tripConditionsRepository;
     private final UserServiceImpl userService;
+    private final RouteRepository routeRepository;
 
     @Override
     public void saveTrip(Trip trip) {
@@ -99,5 +101,19 @@ public class TripServiceImp implements TripService {
     public void updateRouteIdInTripForRouteDelete(Route route) {
         tripRepository.updateRouteIdForNull(route.getId());
     }
+    public Trip saveTripFromRoute(long id) {
+
+        Route route = routeRepository.findById(id).get(); // tu trzeba jakiegoś ifa dla zabezpieczenia napisać
+        Trip trip = new Trip();
+        trip.setName(route.getName());
+        trip.setLength(route.getLength());
+        trip.setTripAltitude(route.getRouteAltitude());
+        trip.setDescription(route.getDescription());
+        trip.setTripTime(0);
+        trip.setRoute(route);
+        saveTrip(trip);
+        return trip;
+    }
+
 }
 

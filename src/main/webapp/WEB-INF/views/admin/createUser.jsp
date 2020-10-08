@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -38,9 +39,12 @@ Insert user data:<br>
     <label>Nick name (visible for other users): <form:input path="nickName" maxlength="50" size="25"/><br>
         <form:errors path="nickName" cssClass="error"/>
     </label><br>
+<%--    <c:if test="${user.password == null}">--%>
+
     <label>Password: <form:password path="password" size="25" maxlength="50"/><br>
         <form:errors path="password" cssClass="error"/>
     </label><br>
+<%--    </c:if>--%>
 <%--    <label>Password: <form:password path="password" size="25" maxlength="50"/><br>    dodać obsługę w backende walidajc powturzenie passworda  --%>
 <%--        <form:errors path="password" cssClass="error"/>--%>
 <%--    </label><br>--%>

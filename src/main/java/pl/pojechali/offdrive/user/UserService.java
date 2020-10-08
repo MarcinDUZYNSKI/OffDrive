@@ -13,5 +13,5 @@ public interface UserService {
 
     User findUserById(Long l);
 
-    void updateUser(User user) throws UserAlreadyExistException;
+    User updateUser(User user) throws UserAlreadyExistException;
 }
