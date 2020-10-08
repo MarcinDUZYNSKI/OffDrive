@@ -103,11 +103,8 @@
                         <tr>
                             <td>Any water crossing:</td>
                             <td>
-                                <input type="radio" name="tripCondition.waterCrossing" value="yes">
-                                <label>YES</label>
-
-                                <input type="radio" name="tripCondition.waterCrossing" value="no">
-                                <label>NO</label>
+                                Yes <form:radiobutton path="tripCondition.waterCrossing" value="1"/>
+                                No <form:radiobutton path="tripCondition.waterCrossing" value="0"/>
                             </td>
 
                         </tr>
@@ -130,25 +127,13 @@
                             <td>
                                 Yes <form:radiobutton path="tripCondition.useWinch" value="1"/>
                                 No <form:radiobutton path="tripCondition.useWinch" value="0"/>
-                                    <%--                                <label>--%>
-                                    <%--                                    <input type="radio"  name="tripCondition.useWinch" value="yes">--%>
-                                    <%--                                </label>--%>
-                                    <%--                                <label >YES</label>--%>
-
-                                    <%--                                <label>--%>
-                                    <%--                                    <input type="radio"name="tripCondition.useWinch" value="no">--%>
-                                    <%--                                </label>--%>
-                                    <%--                                <label >NO</label>--%>
                             </td>
                         </tr>
                         <tr>
                             <td>Did You use Sand Ladder:</td>
                             <td>
-                                <input type="radio" name="tripCondition.useSandLadder" value="yes">
-                                <label>YES</label>
-
-                                <input type="radio" name="tripCondition.useSandLadder" value="no">
-                                <label>NO</label>
+                                Yes <form:radiobutton path="tripCondition.useSandLadder" value="1"/>
+                                No <form:radiobutton path="tripCondition.useSandLadder" value="0"/>
                             </td>
                         </tr>
                     </table>
