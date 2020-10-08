@@ -56,7 +56,7 @@ public class TripServiceImp implements TripService {
             throw new NullPointerException(" Trip is Null");
         }
         Trip tripToUpdate = tripRepository.findById(trip.getId()).orElseThrow(NullPointerException::new);
-        if (tripToUpdate.getUser().getId()!=userService.getCurrentLoginUser().getId()){
+        if (tripToUpdate.getUser().getId() != userService.getCurrentLoginUser().getId()) {
             throw new NoSuchElementException(" can't update trip ");
         }
         tripToUpdate.setName(trip.getName());
@@ -107,12 +107,9 @@ public class TripServiceImp implements TripService {
         tripRepository.save(trip);
     }
 
-    public void updateRouteIdInTripForRouteDelete(Route route) {
-        tripRepository.updateRouteIdForNull(route.getId());
-    }
     public Trip saveTripFromRoute(long id) {
 
-        Route route = routeRepository.findById(id).get(); // tu trzeba jakiegoś ifa dla zabezpieczenia napisać
+        Route route = routeRepository.findById(id).orElseThrow(NullPointerException::new); // tu trzeba jakiegoś ifa dla zabezpieczenia napisać
         Trip trip = new Trip();
         trip.setName(route.getName());
         trip.setLength(route.getLength());

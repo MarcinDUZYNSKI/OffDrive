@@ -17,13 +17,14 @@ public class RouteController {
     private final RouteServiceImpl routeService;
 
     @RequestMapping(value = "/index/routes", method = RequestMethod.GET, params = "allRoute")
-    public String findAllRoads( Model model){
+    public String findAllRoads(Model model) {
         model.addAttribute("routeList", routeService.findAllRouteList());
         return "route/findRoute";
         //@RequestParam(name = "allRoute")Integer par,
     }
+
     @RequestMapping(value = "/index/routes", method = RequestMethod.GET, params = "allMyRoute")
-    public String findAllCurrentLoginUserRoads( Model model){
+    public String findAllCurrentLoginUserRoads(Model model) {
         model.addAttribute("routeList", routeService.findRouteListByUserId(currentLoginUserId()));
         return "route/findRoute";
 //        @RequestParam(name = "allMyRoute")Integer par,
@@ -56,15 +57,13 @@ public class RouteController {
         return "route/findRoute";
     }
 
-
-
     @RequestMapping(value = {"/index/editRoute/{id}"}, method = RequestMethod.GET)
-    public String editRoute(@PathVariable long id, Model model){
+    public String editRoute(@PathVariable long id, Model model) {
         Route route = routeService.findRouteById(id);
-        if (route == null){
+        if (route == null) {
             return "admin/403";
         }
-        if (currentLoginUserId()!=route.getUser().getId()){
+        if (currentLoginUserId() != route.getUser().getId()) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
         model.addAttribute("route", route);
@@ -72,15 +71,14 @@ public class RouteController {
     }
 
     @RequestMapping(value = {"/index/editRoute/{id}"}, method = RequestMethod.POST)
-    public String saveEditTrip(@Valid Route route, BindingResult result, long id){
-        if (id != route.getId()){
+    public String saveEditTrip(@Valid Route route, BindingResult result, long id) {
+        if (id != route.getId()) {
             return "admin/403";
         }
-//        if (currentLoginUserId()!=route.getUser().getId()){
-        if (currentLoginUserId()!=routeService.findRouteById(route.getId()).getUser().getId()){
+        if (currentLoginUserId() != routeService.findRouteById(route.getId()).getUser().getId()) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "route/editRoute";
         }
         routeService.updateRoute(route);
@@ -88,12 +86,12 @@ public class RouteController {
     }
 
     @RequestMapping(value = {"/index/deleteRoute/{id}"}, method = RequestMethod.GET)
-    public String deleteRoute(@PathVariable long id, Model model){
+    public String deleteRoute(@PathVariable long id, Model model) {
         Route route = routeService.findRouteById(id);
-        if (route == null){
+        if (route == null) {
             return "admin/403";
         }
-        if (currentLoginUserId()!=route.getUser().getId()){
+        if (currentLoginUserId() != route.getUser().getId()) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
         model.addAttribute("route", route);
@@ -101,12 +99,12 @@ public class RouteController {
     }
 
     @RequestMapping(value = {"/index/deleteRouteConfirm/{id}"}, method = RequestMethod.GET)
-    public String deleteRouteConfirm(@PathVariable long id){
+    public String deleteRouteConfirm(@PathVariable long id) {
         Route route = routeService.findRouteById(id);
-        if (route == null){
+        if (route == null) {
             return "admin/403";
         }
-        if (currentLoginUserId()!=route.getUser().getId()){
+        if (currentLoginUserId() != route.getUser().getId()) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
         routeService.deleteRoute(route);

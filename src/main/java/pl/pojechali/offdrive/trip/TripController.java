@@ -21,7 +21,6 @@ public class TripController {
     public String createTrip(Model model) {
         model.addAttribute("trip", new Trip());
         return "trip/trip";
-
     }
 
     @RequestMapping(value = {"/index/trip"}, method = RequestMethod.POST)
@@ -32,7 +31,6 @@ public class TripController {
         trip.getTripCondition().setTrip(trip);
         tripService.saveTrip(trip);
         return "redirect:/index";
-
     }
 
     @RequestMapping("/index/user_trips")
@@ -58,7 +56,6 @@ public class TripController {
         }
         model.addAttribute("trip", trip);
         return "trip/trip";
-
     }
 
     @RequestMapping(value = {"/index/editTrip/{id}"}, method = RequestMethod.POST)
@@ -74,7 +71,6 @@ public class TripController {
         }
         tripService.updateTrip(trip);
         return "redirect:/index";
-
     }
 
     @RequestMapping(value = {"/index/deleteTrip/{id}"}, method = RequestMethod.GET)
@@ -88,7 +84,6 @@ public class TripController {
         }
         model.addAttribute("trip", trip);
         return "trip/deleteConfirm";
-
     }
 
     @RequestMapping(value = {"/index/deleteTripConfirm/{id}"}, method = RequestMethod.GET)
@@ -102,7 +97,6 @@ public class TripController {
         }
         tripService.deleteTripForUser(trip);
         return "redirect:/index";
-
     }
 
 }
