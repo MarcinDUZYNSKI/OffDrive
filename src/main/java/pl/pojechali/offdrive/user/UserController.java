@@ -75,7 +75,7 @@ public class UserController {
             return "admin/403";
         }
         userService.deleteUser(user);
-        return "redirect:/";
+        return "redirect:/perform_logout";
     }
 
     @RequestMapping("/index/userProfile")

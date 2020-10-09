@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.pojechali.offdrive.exception.UserAlreadyExistException;
+import pl.pojechali.offdrive.route.Route;
+import pl.pojechali.offdrive.trip.Trip;
 import pl.pojechali.offdrive.user.role.Role;
 import pl.pojechali.offdrive.user.role.RoleRepository;
 
@@ -81,6 +83,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(User user) {
+        for (Trip t : user.getTrips()) {
+            t.setUser(null);
+        }
+        for (Route r : user.getRoutes()){
+            r.setUser(null);
+        }
         userRepository.delete(user);
     }
 

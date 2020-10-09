@@ -117,7 +117,9 @@ public class RouteServiceImpl implements RouteService {
         List<Route> routeList = routeRepository.findAll();
         HashSet<Long> userIdFromRoute = new HashSet<>();
         for (Route r : routeList) {
-            userIdFromRoute.add(r.getUser().getId());
+            if (r.getUser() != null) {
+                userIdFromRoute.add(r.getUser().getId());
+            }
         }
         return userIdFromRoute;
     }
