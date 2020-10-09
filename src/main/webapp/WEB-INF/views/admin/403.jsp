@@ -11,8 +11,7 @@
     <title>Security with Spring Boot</title>
 </head>
 <body>
-<a href="/home"><img src="/images/youShallNotPass.jpg" border="0"></a>
-<a href="/index"> Return to Index </a>
+<a href="/"><img src="/images/youShallNotPass.jpg" border="0"></a>
 <br>
 </body>
 </html>

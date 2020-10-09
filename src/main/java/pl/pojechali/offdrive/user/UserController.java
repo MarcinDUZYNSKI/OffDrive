@@ -27,6 +27,9 @@ public class UserController {
         if (result.hasErrors()){
             return "admin/user_form";
         }
+        if(user.getPassword() == null) {
+            return "admin/user_form";
+        }
         try {
             userService.saveUser(user);
         } catch (UserAlreadyExistException e) {
@@ -44,40 +47,20 @@ public class UserController {
             return "admin/403";
         }
         model.addAttribute("user", user);
-        return "admin/user_form";
+        return "admin/edit_user";
 
     }
     @RequestMapping(value = {"/index/editUser"}, method = RequestMethod.POST)
     public String saveEditUser(@Valid User user, BindingResult result) throws UserAlreadyExistException {
-
         if (result.hasErrors()){
-            return "admin/user_form";
+            return "admin/edit_user";
         }
         userService.updateUser(user);
         return "redirect:/index";
-
     }
-//    @RequestMapping(value = "/index/editUser", method = RequestMethod.GET)
-//    public String editUser(Model model) {
-//        User user = userService.getCurrentLoginUser();
-//        if (user == null){
-//            return "admin/403";
-//        }
-//        model.addAttribute("user", userService.getCurrentLoginUser());
-//        return "admin/user_form";
-//    }
-//
-//    @RequestMapping(value = "/index/editUser", method = RequestMethod.POST)
-//    public String saveEditUser(@Valid User user, BindingResult result) {
-//        if(result.hasErrors()) {
-//            return "admin/user_form";
-//        }
-//        userService.updateUser(user);
-//        return "redirect:/index";
-//    }
 
     @RequestMapping(value = "/index/deleteUser", method = RequestMethod.GET)
-    public String deleteUser(Model model) {
+    public String removeUser(Model model) {
         User user = userService.getCurrentLoginUser();
         if(user == null) {
             return "admin/403";
@@ -85,18 +68,19 @@ public class UserController {
         model.addAttribute("user", userService.getCurrentLoginUser());
         return "admin/deleteConfirm";
     }
+    @RequestMapping("/index/approvedUserDelete")
+    public String deleteUser() {
+        User user = userService.getCurrentLoginUser();
+        if(user == null) {
+            return "admin/403";
+        }
+        userService.deleteUser(user);
+        return "redirect:/";
+    }
     @RequestMapping("/index/userProfile")
     public String showUserProfile (Model model) {
         model.addAttribute("currentUser", userService.getCurrentLoginUser());
         return "admin/user_profile";
     }
-
-//    @GetMapping("/admin")
-//    @ResponseBody
-//    public String userInfo(@AuthenticationPrincipal UserDetails customUser) {
-//        log.info("customUser class {} "
-//                , customUser.getClass());
-//        return "You are logged as " + customUser;
-//    }
 
 }

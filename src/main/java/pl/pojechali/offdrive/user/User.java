@@ -30,13 +30,12 @@ public class User {
     @NotBlank(message = "Please provide an email")
     @Email(message = "Please provide a valid Email")
     @Column(unique = true) // zabezpieczyć długości
-//    @UniqueElements //to działa na kolekci tu trzeba stworzyć włąsny walidator
     private String email;
     @NotBlank(message = "Please provide first name")
     private String firstName;
     @NotBlank(message = "Please provide last name")
     private String lastName;
-    @NotBlank(message = "Please provide password")
+//    @NotBlank(message = "Please provide password")
     @Size(min = 8, max = 100) // servis do walidacji hasłe lista zakazanych haseł
     private String password;
     private String nickName;

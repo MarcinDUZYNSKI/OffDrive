@@ -27,7 +27,7 @@
         <div class="border-dashed view-height">
             <div class="container w-100">
                 <h1>Are you sure You want to delete: ${user.email} user account?</h1><br>
-                <button><a href="/index/deleteUserConfirm">YES</a></button>
+                <button><a href="/index/approvedUserDelete">YES</a></button>
                 <button><a href="/index/userProfile">NO</a></button>
             </div>
         </div>
