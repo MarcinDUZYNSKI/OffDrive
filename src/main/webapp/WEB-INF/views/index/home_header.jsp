@@ -6,7 +6,7 @@
             <nav id="nav">
                 <ul>
 <%--                    <li class="active"><a href="/home">Homepage</a></li>--%>
-                    <li><a href="login">Login</a></li>
+                    <li><a href="/login">Login</a></li>
                     <li><a href="/admin/createUser">Creat User</a></li>
                 </ul>
             </nav>
