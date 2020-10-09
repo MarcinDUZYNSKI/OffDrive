@@ -76,7 +76,7 @@
 <%--                            --%>
 <%--                        </c:otherwise>--%>
 <%--                    </c:choose>--%>
-                    <c:if test="${user.password == null}">
+
                         <label>Password: <form:password path="password" size="25"
                                                         maxlength="50"/><br>
                             <form:errors path="password" cssClass="error"/>
@@ -84,7 +84,7 @@
                         <%--    <label>Password: <form:password path="password" size="25" maxlength="50"/><br>    dodać obsługę w backende walidajc powturzenie passworda  --%>
                         <%--        <form:errors path="password" cssClass="error"/>--%>
                         <%--    </label><br>--%>
-                    </c:if>
+
 
                     <label><input type="submit" value="Submit"></label>
                 </form:form>

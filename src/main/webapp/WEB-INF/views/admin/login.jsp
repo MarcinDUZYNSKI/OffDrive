@@ -44,9 +44,9 @@
     MAM ROLE ADMIN
 </sec:authorize>
 
-<sec:authorize url="/home">
-    MAM DOSTĘP DO TEGO URL
-</sec:authorize>
+<%--<sec:authorize url="/home">--%>
+<%--    MAM DOSTĘP DO TEGO URL--%>
+<%--</sec:authorize>--%>
 
 <sec:authorize access="isAuthenticated()">
     <p>Zalogowany jako: <sec:authentication property="username"/></p>
