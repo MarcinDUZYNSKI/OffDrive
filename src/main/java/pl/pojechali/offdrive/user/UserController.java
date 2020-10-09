@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
@@ -22,6 +21,7 @@ public class UserController {
         model.addAttribute("user", new User());
         return "admin/user_form";
     }
+
     @RequestMapping(value = "/admin/createUser", method = RequestMethod.POST)
     public String saveUser(@Valid User user, BindingResult result){
         if (result.hasErrors()){
@@ -36,7 +36,7 @@ public class UserController {
             result.rejectValue("email", "user.email","An account already exists for this email.");
             return "admin/user_form";
         }
-            return "admin/login";
+        return "admin/login";
     }
 
     @RequestMapping(value = {"/index/editUser"}, method = RequestMethod.GET)
@@ -62,7 +62,7 @@ public class UserController {
     @RequestMapping(value = "/index/deleteUser", method = RequestMethod.GET)
     public String removeUser(Model model) {
         User user = userService.getCurrentLoginUser();
-        if(user == null) {
+        if (user == null) {
             return "admin/403";
         }
         model.addAttribute("user", userService.getCurrentLoginUser());
@@ -77,8 +77,9 @@ public class UserController {
         userService.deleteUser(user);
         return "redirect:/";
     }
+
     @RequestMapping("/index/userProfile")
-    public String showUserProfile (Model model) {
+    public String showUserProfile(Model model) {
         model.addAttribute("currentUser", userService.getCurrentLoginUser());
         return "admin/user_profile";
     }

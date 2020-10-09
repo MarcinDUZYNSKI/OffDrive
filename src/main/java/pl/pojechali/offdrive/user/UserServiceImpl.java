@@ -17,15 +17,14 @@ import java.util.*;
 @Transactional
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-
-  private final UserRepository userRepository;
-  private final RoleRepository roleRepository;
-  private final BCryptPasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 //    private final UserUtils userUtils;
 
-  public User findUserByEmail(String email) {
-    return userRepository.findUserByEmail(email);
-  }
+    public User findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
 
   public void saveUser(User user) throws UserAlreadyExistException {
     if (checkIfUserExist(user.getEmail())) {
@@ -42,20 +41,20 @@ public class UserServiceImpl implements UserService {
     userRepository.save(user);
   }
 
-  @Override
-  public Map<Long, String> findUserByNickname(String nickName) {
-    Set<User> userSet = userRepository.findUserByNickNameContains(nickName);
-    Map<Long, String> userMap = new HashMap<>();
-    for (User u : userSet) {
-      userMap.put(u.getId(), u.getNickName());
+    @Override
+    public Map<Long, String> findUserByNickname(String nickName) {
+        Set<User> userSet = userRepository.findUserByNickNameContains(nickName);
+        Map<Long, String> userMap = new HashMap<>();
+        for (User u : userSet) {
+            userMap.put(u.getId(), u.getNickName());
+        }
+        return userMap;
     }
-    return userMap;
-  }
 
-  @Override
-  public User findUserById(Long l) {
-    return userRepository.findUserById(l);
-  }
+    @Override
+    public User findUserById(Long l) {
+        return userRepository.findUserById(l);
+    }
 
   @Override
   public User updateUser(User user) throws UserAlreadyExistException {
@@ -78,15 +77,15 @@ public class UserServiceImpl implements UserService {
     return userToUpdate;
   }
 
-  public Map<Long, String> findAllIdNickNameMap() {
-    return userRepository.findAllIdNickNameMap();
-  }
+    public Map<Long, String> findAllIdNickNameMap() {
+        return userRepository.findAllIdNickNameMap();
+    }
 
-  //    public boolean checkIfUserExist(String email) {
+//    public boolean checkIfUserExist(String email) {
 //        return userRepository.findUserByEmail(email) != null;
 //    }
 // docelowo przenieść do controllera bo ta metoda nie zadziała bez przeglądarki
-  public User getCurrentLoginUser() { // TODO rozbiec na dwie części 1 wyciąga ID zalogowanego usera i ta będzie siedzieć w UserUtils statyczna metoda 2 metoda zastaje userSwervice findUserByEmail
+    public User getCurrentLoginUser() { // TODO rozbiec na dwie części 1 wyciąga ID zalogowanego usera i ta będzie siedzieć w UserUtils statyczna metoda 2 metoda zastaje userSwervice findUserByEmail
 
     String username;
     Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
