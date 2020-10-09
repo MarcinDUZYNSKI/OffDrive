@@ -16,22 +16,23 @@
 	{
 		margin: 0;
 		padding: 0;
-		background: #161616;
+		background: #000000;
+		text-align: center;
 	}
 
 	body,input,textarea,select
 	{
 		font-family: 'Roboto', sans-serif;
-		font-size: 11pt;
+		font-size: 1.1em;
 		font-weight: 300;
 		line-height: 1.75em;
-		color: #777;
+		color: #777777;
 	}
 
 	h1,h2,h3,h4,h5,h6
 	{
 		font-weight: 300;
-		color: #777;
+		color: #777777;
 	}
 	
 		h2
@@ -138,18 +139,22 @@
 		article
 		{
 			margin-bottom: 3em;
+			text-align: center;
 		}
 		
 		section > :last-child,
 		article > :last-child
 		{
 			margin-bottom: 0;
+			text-align: center;
 		}
 
 		section:last-child,
 		article:last-child
+
 		{
 			margin-bottom: 0;
+			text-align: center;
 		}
 
 		.row > section,
@@ -274,8 +279,8 @@
 		background: #80BA8E;
 		padding: 0.8em 2em;
 		text-decoration: none !important;
-		font-size: 1.2em;
-		font-weight: 300;
+		font-size: 1.3em;
+		font-weight: 400;
 		color: #FFF !important;
 		-moz-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
 		-webkit-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
@@ -898,6 +903,7 @@
 	
 	.homepage #content header h2
 	{
+		text-align: center
 	}
 
 	#sidebar h2

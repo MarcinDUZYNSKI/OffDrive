@@ -188,6 +188,6 @@
         </div>
     </div>
 </section>
-
+<%@ include file="/WEB-INF/views/index/footer.jsp" %>
 </body>
 </html>

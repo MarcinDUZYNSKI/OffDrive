@@ -28,7 +28,7 @@
         <div class="border-dashed view-height">
             <div class="container w-50">
                 <form class="padding-small text-center" action="/perform_login" method="post">
-                    <h1 class="text-color-darker">Login</h1>
+                    <h1 class="text-color-darker">LOGIN</h1>
                     <div><label> Email: <input type="text" name="username"/> </label></div>
                     <div><label> Password: <input type="password" name="password"/> </label></div>
                     <div><input type="submit" value="Login"/></div>
@@ -39,7 +39,7 @@
     </div>
 </section>
 <sec:authorize access="isAuthenticated()">
-    <form action="<c:url value="/perform_logout"/>" method="post">
+    <form action="<c:url value="/perform_login"/>" method="post">
         <input class="fa fa-id-badge" type="submit" value="Wyloguj">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
