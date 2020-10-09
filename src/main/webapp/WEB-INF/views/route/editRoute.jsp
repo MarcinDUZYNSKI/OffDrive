@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="../css/skel-noscript.css" type="text/css"/>
     <link rel="stylesheet" href="../css/style.css" type="text/css"/>
     <link rel="stylesheet" href="../css/style-desktop.css" type="text/css"/>
+    <script src="../../js/skel.min.js"></script>
+    <script src="../../js/skel-panels.min.js"></script>
+    <script src="../../js/init.js"></script>
+    <link rel="stylesheet" href="../../css/skel-noscript.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/style-desktop.css" type="text/css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
           crossorigin="anonymous">
