@@ -14,7 +14,8 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 
 @Controller
-@RequiredArgsConstructor @Slf4j
+@RequiredArgsConstructor
+//@Slf4j
 public class TripController {
     private final TripServiceImp tripService;
 
@@ -26,9 +27,9 @@ public class TripController {
 
     @RequestMapping(value = {"/index/trip"}, method = RequestMethod.POST)
     public String saveTrip(@Valid Trip trip, BindingResult result) {
-        log.info("trip: {}", trip);
+//        log.info("trip: {}", trip);
         if (result.hasErrors()) {
-            log.debug("errors: {}", result);
+//            log.debug("errors: {}", result);
             return "trip/trip";
         }  // podpiąć się pod errory w springu zeby ąłdnie obsłużyć -> java.lang.NumberFormatException
         trip.getTripCondition().setTrip(trip);
