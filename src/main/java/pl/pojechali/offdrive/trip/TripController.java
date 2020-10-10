@@ -1,6 +1,7 @@
 package pl.pojechali.offdrive.trip;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 
 @Controller
-@RequiredArgsConstructor
+@RequiredArgsConstructor @Slf4j
 public class TripController {
     private final TripServiceImp tripService;
 
@@ -25,7 +26,9 @@ public class TripController {
 
     @RequestMapping(value = {"/index/trip"}, method = RequestMethod.POST)
     public String saveTrip(@Valid Trip trip, BindingResult result) {
+        log.info("trip: {}", trip);
         if (result.hasErrors()) {
+            log.debug("errors: {}", result);
             return "trip/trip";
         }  // podpiąć się pod errory w springu zeby ąłdnie obsłużyć -> java.lang.NumberFormatException
         trip.getTripCondition().setTrip(trip);
