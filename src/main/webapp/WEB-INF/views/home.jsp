@@ -18,6 +18,7 @@
     </noscript>
 </head>
 <body class="homepage">
+<spring:message code="homepage.welcome"/>
 
 <%@ include file="index/home_header.jsp" %>
 
